@@ -1,0 +1,16 @@
+<div class="container">
+  <div class="title">
+    <h1>{{ btnTitulo }}</h1>
+  </div>
+  <form [formGroup]="categoriaForm" (ngSubmit)="submitFunction()" #formDit="ngForm">
+    <input type="hidden" formControlName="id">
+    <div>
+      <label for="">Nome da nova categoria</label>
+      <input type="text" formControlName="nome">
+    </div>
+    <div>
+      <button>Cadastrar nova categoria</button>
+      <button (click)="btnRedirect($event, 'categoria')">Voltar</button>
+    </div>
+  </form>
+</div>
