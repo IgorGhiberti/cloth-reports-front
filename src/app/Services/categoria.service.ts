@@ -38,4 +38,10 @@ export class CategoriaService {
   {
     return this.httpClient.put<Categoria>(`${this.url}/${id}`, categoria);
   }
+
+  //Excluir categoria
+  deleteCategoria(id: number): Observable<Categoria>
+  {
+    return this.httpClient.delete<Categoria>(`${this.url}/${id}`);
+  }
 }

@@ -33,5 +33,21 @@ export class CategoriaComponent {
     this.router.navigateByUrl(rota);
   }
 
+  //Filtra a categoria por nome
+  filtroCategoria(event: Event)
+  {
+    var valorFiltro = (event.target as HTMLInputElement).value.toLowerCase();
+    if(valorFiltro == '')
+    {
+      this.getCategorias();
+    }
+    else
+    {
+      var listaData = this.categorias;
+      var listaFiltrada = listaData.filter(element => element.nome.toLowerCase().includes(valorFiltro));
+      this.categorias = listaFiltrada;
+    }
+  }
+
 
 }

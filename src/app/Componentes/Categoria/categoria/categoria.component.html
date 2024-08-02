@@ -5,7 +5,7 @@
 
   <div class="actions-container">
     <button class="cadastrar" (click)="btnRedirect($event, 'cadastro-categoria')">Cadastrar Categoria</button>
-    <input type="search" placeholder="Pesquisar categoria" class="form-control" aria-label="Default" aria-describedby="inputGroup-sizing-default">
+    <input type="search" (keyup)="filtroCategoria($event)" placeholder="Pesquisar categoria" class="form-control" aria-label="Default" aria-describedby="inputGroup-sizing-default">
   </div>
 
   <div class="tabela-categoria">
@@ -22,7 +22,7 @@
             <td>{{ categoria.nome }}</td>
             <td class="text-end btn-action">
               <button type="button" class="btn btn-primary btn-sm" style="margin-right: 1rem;" (click)="btnRedirect($event, 'categoria/editar/' + categoria.idcategoria)">Editar</button>
-              <button type="button" class="btn btn-danger btn-sm">Excluir</button>
+              <button type="button" class="btn btn-danger btn-sm" (click)="btnRedirect($event, 'categoria/excluir/' + categoria.idcategoria)">Excluir</button>
             </td>
           </tr>
         }
