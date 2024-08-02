@@ -14,6 +14,7 @@ import { Router } from '@angular/router';
 export class CategoriaComponent {
 
   categorias: Categoria[] = [];
+
   constructor(private categoriaService: CategoriaService, private router: Router){
     this.getCategorias();
   }
@@ -31,4 +32,6 @@ export class CategoriaComponent {
     event.preventDefault();
     this.router.navigateByUrl(rota);
   }
+
+
 }

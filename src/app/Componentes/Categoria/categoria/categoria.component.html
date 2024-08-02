@@ -17,11 +17,11 @@
         </tr>
       </thead>
       <tbody>
-        @for (categoria of categorias; track categoria.nome) {
+        @for (categoria of categorias; track categoria.idcategoria) {
           <tr>
             <td>{{ categoria.nome }}</td>
             <td class="text-end btn-action">
-              <button type="button" class="btn btn-primary btn-sm" style="margin-right: 1rem;">Editar</button>
+              <button type="button" class="btn btn-primary btn-sm" style="margin-right: 1rem;" (click)="btnRedirect($event, 'categoria/editar/' + categoria.idcategoria)">Editar</button>
               <button type="button" class="btn btn-danger btn-sm">Excluir</button>
             </td>
           </tr>

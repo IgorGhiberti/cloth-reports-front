@@ -21,9 +21,21 @@ export class CategoriaService {
     return this.httpClient.get<Categoria[]>(this.url);
   }
 
+  //Retorna a categoria pelo id
+  getCategoriaById(id: number): Observable<Categoria>
+  {
+    return this.httpClient.get<Categoria>(`${this.url}/${id}`);
+  }
+
   //Cria categoria
-  postCategoria (categoria: Categoria)
+  postCategoria(categoria: Categoria): Observable<Categoria>
   {
     return this.httpClient.post<Categoria>(this.url, categoria);
+  }
+
+  //Edita categoria
+  putCategoria(categoria: Categoria, id: number): Observable<Categoria>
+  {
+    return this.httpClient.put<Categoria>(`${this.url}/${id}`, categoria);
   }
 }

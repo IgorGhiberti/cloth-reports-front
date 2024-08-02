@@ -1,7 +1,8 @@
 import { Component } from '@angular/core';
-import { FormularioCategoriaComponent } from "../../formulario-categoria/formulario-categoria.component";
-import { Categoria } from '../../../../Models/categoria';
-import { CategoriaService } from '../../../../Services/categoria.service';
+import { FormularioCategoriaComponent } from '../formulario-categoria/formulario-categoria.component';
+import { CategoriaService } from '../../../Services/categoria.service';
+import { Categoria } from '../../../Models/categoria';
+
 
 @Component({
   selector: 'app-cadastro-categoria',
