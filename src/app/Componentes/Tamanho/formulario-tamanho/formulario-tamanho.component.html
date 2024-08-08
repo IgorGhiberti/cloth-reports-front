@@ -1,0 +1,16 @@
+<div class="container">
+  <div class="title">
+    <h1>{{ btnTitulo }}</h1>
+  </div>
+  <form [formGroup]="tamanhoForm" (ngSubmit)="submitFunction()" #formDit="ngForm">
+    <input type="hidden" formControlName="idtamanho">
+    <div>
+      <label>Nome: </label>
+      <input type="text" formControlName="nome">
+    </div>
+    <div>
+      <button [disabled]="!tamanhoForm.valid" type="submit">{{ btnAcao }}</button>
+      <button (click)="btnRedirect($event, 'tamanho')">Voltar</button>
+    </div>
+  </form>
+</div>

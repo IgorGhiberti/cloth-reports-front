@@ -14,7 +14,7 @@ import { Categoria } from '../../../Models/categoria';
 export class CadastroCategoriaComponent {
 
   btnTitulo = "Cadastrar Categoria";
-
+  btnAcao = 'Confirmar cadastro'
   constructor(private categoriaService: CategoriaService){}
 
   //Cadastra uma nova categoria

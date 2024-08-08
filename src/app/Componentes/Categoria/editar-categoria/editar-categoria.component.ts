@@ -32,6 +32,7 @@ export class EditarCategoriaComponent implements OnInit {
   {
     this.categoriaService.putCategoria(categoria, this.idNumber).subscribe((data) => {
       this.categoria = data
+      this.router.navigateByUrl('categoria');
     })
   }
 

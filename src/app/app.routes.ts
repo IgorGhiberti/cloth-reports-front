@@ -5,6 +5,10 @@ import { CategoriaComponent } from './Componentes/Categoria/categoria/categoria.
 import { CadastroCategoriaComponent } from './Componentes/Categoria/cadastro-categoria/cadastro-categoria.component';
 import { EditarCategoriaComponent } from './Componentes/Categoria/editar-categoria/editar-categoria.component';
 import { ExcluirCategoriaComponent } from './Componentes/Categoria/excluir-categoria/excluir-categoria.component';
+import { TamanhoComponent } from './Componentes/Tamanho/tamanho/tamanho.component';
+import { CadastroTamanhoComponent } from './Componentes/Tamanho/cadastro-tamanho/cadastro-tamanho.component';
+import { EditarTamanhoComponent } from './Componentes/Tamanho/editar-tamanho/editar-tamanho.component';
+import { ExcluirTamanhoComponent } from './Componentes/Tamanho/excluir-tamanho/excluir-tamanho.component';
 
 export const routes: Routes = [
   {path: '', component: HomeComponent},
@@ -12,5 +16,9 @@ export const routes: Routes = [
   {path: 'categoria', component: CategoriaComponent},
   {path: 'cadastro-categoria', component: CadastroCategoriaComponent},
   {path: 'categoria/editar/:id', component: EditarCategoriaComponent},
-  {path: 'categoria/excluir/:id', component: ExcluirCategoriaComponent}
+  {path: 'categoria/excluir/:id', component: ExcluirCategoriaComponent},
+  {path: 'tamanho', component: TamanhoComponent},
+  {path: 'cadastro-tamanho', component: CadastroTamanhoComponent},
+  {path: 'tamanho/editar/:id', component: EditarTamanhoComponent},
+  {path: 'tamanho/excluir/:id', component: ExcluirTamanhoComponent}
 ];

@@ -16,6 +16,7 @@ export class FormularioCategoriaComponent implements OnInit {
   @Output() onSubmitFunction = new EventEmitter<Categoria>();
   @Input() btnTitulo!: string;
   @Input() btnAcao!: string;
+  @Input() isDisabled: boolean = false;
   @Input() dadosCategoria: Categoria | null = null;
   categoriaForm!: FormGroup;
 
@@ -26,7 +27,7 @@ export class FormularioCategoriaComponent implements OnInit {
 
     this.categoriaForm = new FormGroup({
       idcategoria: new FormControl(this.dadosCategoria ? this.dadosCategoria.idcategoria: 0),
-      nome: new FormControl(this.dadosCategoria ? this.dadosCategoria.nome: '', [Validators.required])
+      nome: new FormControl({value: this.dadosCategoria ? this.dadosCategoria.nome: '', disabled: this.isDisabled}, [Validators.required])
     })
   }
 

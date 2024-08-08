@@ -1,3 +1,9 @@
-<div>
-  <app-formulario-categoria [dadosCategoria]="categoria" [btnTitulo]="btnTitle" (onSubmitFunction)="excluirCategoria($event)"></app-formulario-categoria>
+<div *ngIf="this.categoria">
+  <app-formulario-categoria
+  [dadosCategoria]="categoria"
+  [btnTitulo]="btnTitle"
+  (onSubmitFunction)="excluirCategoria($event)"
+  [btnAcao]="btnAcao"
+  [isDisabled]="true"
+  ></app-formulario-categoria>
 </div>

@@ -1,0 +1,38 @@
+<div class="container">
+  <div class="title">
+    <h2>Tamanhos</h2>
+  </div>
+
+  <div class="actions-container">
+    <button class="cadastrar" (click)="btnRedirect($event, 'cadastro-tamanho')">Cadastrar Tamanho</button>
+    <input type="search" (keyup)="filtroTamanho($event)" placeholder="Pesquisar tamanho" class="form-control" aria-label="Default" aria-describedby="inputGroup-sizing-default">
+  </div>
+
+  <div class="tabela-tamanho">
+    <table class="table">
+      <thead>
+        <tr>
+          <th scope="col">Nome da tamanho</th>
+          <th scope="col"></th>
+        </tr>
+      </thead>
+      <tbody>
+        @for (tamanho of tamanhos; track tamanho.idtamanho) {
+          <tr>
+            <td>{{ tamanho.nome }}</td>
+            <td class="text-end btn-action">
+              <button type="button" class="btn btn-primary btn-sm" style="margin-right: 1rem;" (click)="btnRedirect($event, 'tamanho/editar/' + tamanho.idtamanho)">Editar</button>
+              <button type="button" class="btn btn-danger btn-sm" (click)="btnRedirect($event, 'tamanho/excluir/' + tamanho.idtamanho)">Excluir</button>
+            </td>
+          </tr>
+        }
+      </tbody>
+    </table>
+  </div>
+
+  <div>
+    <button (click)="btnRedirect($event, '')">Voltar</button>
+  </div>
+</div>
+
+

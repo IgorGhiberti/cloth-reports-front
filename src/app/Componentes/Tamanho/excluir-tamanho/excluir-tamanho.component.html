@@ -1,0 +1,9 @@
+<div *ngIf="this.tamanho">
+  <app-formulario-tamanho
+  [dadosTamanho]="tamanho"
+  [btnTitulo]="btnTitle"
+  (onSubmitFunction)="excluirTamanho($event)"
+  [btnAcao]="btnAcao"
+  [isDisabled]="true"
+  ></app-formulario-tamanho>
+</div>
