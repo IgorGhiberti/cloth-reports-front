@@ -9,6 +9,10 @@ import { TamanhoComponent } from './Componentes/Tamanho/tamanho/tamanho.componen
 import { CadastroTamanhoComponent } from './Componentes/Tamanho/cadastro-tamanho/cadastro-tamanho.component';
 import { EditarTamanhoComponent } from './Componentes/Tamanho/editar-tamanho/editar-tamanho.component';
 import { ExcluirTamanhoComponent } from './Componentes/Tamanho/excluir-tamanho/excluir-tamanho.component';
+import { MarcaComponent } from './Componentes/Marca/marca/marca.component';
+import { CadastroMarcaComponent } from './Componentes/Marca/cadastro-marca/cadastro-marca.component';
+import { EditarMarcaComponent } from './Componentes/Marca/editar-marca/editar-marca.component';
+import { ExcluirMarcaComponent } from './Componentes/Marca/excluir-marca/excluir-marca.component';
 
 export const routes: Routes = [
   {path: '', component: HomeComponent},
@@ -20,5 +24,9 @@ export const routes: Routes = [
   {path: 'tamanho', component: TamanhoComponent},
   {path: 'cadastro-tamanho', component: CadastroTamanhoComponent},
   {path: 'tamanho/editar/:id', component: EditarTamanhoComponent},
-  {path: 'tamanho/excluir/:id', component: ExcluirTamanhoComponent}
+  {path: 'tamanho/excluir/:id', component: ExcluirTamanhoComponent},
+  {path: 'marca', component: MarcaComponent},
+  {path: 'cadastro-marca', component: CadastroMarcaComponent},
+  {path: 'marca/editar/:id', component: EditarMarcaComponent},
+  {path: 'marca/excluir/:id', component: ExcluirMarcaComponent}
 ];

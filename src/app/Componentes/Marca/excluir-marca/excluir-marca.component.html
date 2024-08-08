@@ -1,0 +1,9 @@
+<div *ngIf="this.marca">
+  <app-formulario-marca
+  [dadosmarca]="marca"
+  [btnTitulo]="btnTitle"
+  (onSubmitFunction)="excluirMarca($event)"
+  [btnAcao]="btnAcao"
+  [isDisabled]="true"
+  ></app-formulario-marca>
+</div>

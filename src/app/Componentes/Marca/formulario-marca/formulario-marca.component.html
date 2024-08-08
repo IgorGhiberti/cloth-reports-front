@@ -1,0 +1,16 @@
+<div class="container">
+  <div class="title">
+    <h1>{{ btnTitulo }}</h1>
+  </div>
+  <form [formGroup]="marcaForm" (ngSubmit)="submitFunction()" #formDit="ngForm">
+    <input type="hidden" formControlName="idmarca">
+    <div>
+      <label>Nome: </label>
+      <input type="text" formControlName="nome">
+    </div>
+    <div>
+      <button [disabled]="!marcaForm.valid" type="submit">{{ btnAcao }}</button>
+      <button (click)="btnRedirect($event, 'marca')">Voltar</button>
+    </div>
+  </form>
+</div>

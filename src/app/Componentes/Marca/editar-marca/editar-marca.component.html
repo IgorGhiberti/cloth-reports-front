@@ -1,0 +1,8 @@
+<div *ngIf="this.marca">
+  <app-formulario-marca
+    [dadosmarca]="marca"
+    [btnTitulo]="btnTitle"
+    [btnAcao]="btnAcao"
+    (onSubmitFunction)="editarMarca($event)">
+  </app-formulario-marca>
+</div>
