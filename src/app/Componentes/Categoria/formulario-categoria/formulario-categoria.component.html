@@ -3,13 +3,13 @@
     <h1>{{ btnTitulo }}</h1>
   </div>
   <form [formGroup]="categoriaForm" (ngSubmit)="submitFunction()" #formDit="ngForm">
-    <input type="hidden" formControlName="id">
+    <input type="hidden" formControlName="idcategoria">
     <div>
-      <label for="">Nome da nova categoria</label>
+      <label>Nome: </label>
       <input type="text" formControlName="nome">
     </div>
     <div>
-      <button type="submit">Cadastrar nova categoria</button>
+      <button [disabled]="!categoriaForm.valid" type="submit">{{ btnAcao }}</button>
       <button (click)="btnRedirect($event, 'categoria')">Voltar</button>
     </div>
   </form>
