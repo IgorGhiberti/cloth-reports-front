@@ -1,0 +1,42 @@
+<div class="container">
+  <div class="title">
+    <h2>Lojas</h2>
+  </div>
+
+  <div class="actions-container">
+    <button class="cadastrar" (click)="btnRedirect($event, 'cadastro-loja')">Cadastrar loja</button>
+    <input type="search" (keyup)="filtroLoja($event)" placeholder="Pesquisar loja" class="form-control" aria-label="Default" aria-describedby="inputGroup-sizing-default">
+  </div>
+
+  <div class="tabela-loja">
+    <table class="table">
+      <thead>
+        <tr>
+          <th scope="col">Nome da loja</th>
+          <th scope="col"></th>
+          <th scope="col"></th>
+        </tr>
+      </thead>
+      <tbody>
+        @for (loja of lojas; track loja.idloja) {
+          <tr>
+            <td>{{ loja.nome }}</td>
+            <td>{{ loja.cnpj }}</td>
+            <td class="text-end btn-action">
+              <button type="button" class="btn btn-primary btn-sm" style="margin-right: 1rem;" (click)="btnRedirect($event, 'loja/editar/' + loja.idloja)">Editar</button>
+              <button type="button" class="btn btn-danger btn-sm" (click)="btnRedirect($event, 'loja/excluir/' + loja.idloja)">Excluir</button>
+            </td>
+          </tr>
+        }
+      </tbody>
+    </table>
+  </div>
+
+  <div>
+    <button (click)="btnRedirect($event, '')">Voltar</button>
+  </div>
+</div>
+
+
+
+

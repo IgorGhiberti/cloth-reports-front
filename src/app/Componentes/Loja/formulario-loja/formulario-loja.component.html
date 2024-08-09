@@ -1,0 +1,20 @@
+<div class="container">
+  <div class="title">
+    <h1>{{ btnTitulo }}</h1>
+  </div>
+  <form [formGroup]="lojaForm" (ngSubmit)="submitFunction()" #formDit="ngForm">
+    <input type="hidden" formControlName="idloja">
+    <div>
+      <label>Nome: </label>
+      <input type="text" formControlName="nome">
+    </div>
+    <div>
+      <label>CNPJ: </label>
+      <input type="text" formControlName="cnpj">
+    </div>
+    <div>
+      <button [disabled]="!lojaForm.valid" type="submit">{{ btnAcao }}</button>
+      <button (click)="btnRedirect($event, 'loja')">Voltar</button>
+    </div>
+  </form>
+</div>

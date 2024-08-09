@@ -13,6 +13,10 @@ import { MarcaComponent } from './Componentes/Marca/marca/marca.component';
 import { CadastroMarcaComponent } from './Componentes/Marca/cadastro-marca/cadastro-marca.component';
 import { EditarMarcaComponent } from './Componentes/Marca/editar-marca/editar-marca.component';
 import { ExcluirMarcaComponent } from './Componentes/Marca/excluir-marca/excluir-marca.component';
+import { LojaComponent } from './Componentes/Loja/loja/loja.component';
+import { CadastroLojaComponent } from './Componentes/Loja/cadastro-loja/cadastro-loja.component';
+import { EditarLojaComponent } from './Componentes/Loja/editar-loja/editar-loja.component';
+import { ExcluirLojaComponent } from './Componentes/Loja/excluir-loja/excluir-loja.component';
 
 export const routes: Routes = [
   {path: '', component: HomeComponent},
@@ -28,5 +32,9 @@ export const routes: Routes = [
   {path: 'marca', component: MarcaComponent},
   {path: 'cadastro-marca', component: CadastroMarcaComponent},
   {path: 'marca/editar/:id', component: EditarMarcaComponent},
-  {path: 'marca/excluir/:id', component: ExcluirMarcaComponent}
+  {path: 'marca/excluir/:id', component: ExcluirMarcaComponent},
+  {path: 'loja', component: LojaComponent},
+  {path: 'cadastro-loja', component: CadastroLojaComponent},
+  {path: 'loja/editar/:id', component: EditarLojaComponent},
+  {path: 'loja/excluir/:id', component: ExcluirLojaComponent}
 ];
