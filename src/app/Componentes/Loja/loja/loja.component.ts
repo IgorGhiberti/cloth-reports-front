@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { Loja } from '../../../Models/loja';
 import { LojaService } from '../../../Services/loja.service';
 import { Router } from '@angular/router';
@@ -10,11 +10,13 @@ import { Router } from '@angular/router';
   templateUrl: './loja.component.html',
   styleUrl: './loja.component.scss'
 })
-export class LojaComponent {
+export class LojaComponent implements OnInit {
 
   lojas: Loja[] = [];
 
-  constructor(private lojaService: LojaService, private router: Router){
+  constructor(private lojaService: LojaService, private router: Router){}
+
+  ngOnInit(): void {
     this.getLojas();
   }
 
@@ -31,7 +33,7 @@ export class LojaComponent {
     this.router.navigateByUrl(rota);
   }
 
-  //Filtra a categoria por nome
+  //Filtra a loja por nome e cnpj
   filtroLoja(event: Event)
   {
     var valorFiltro = (event.target as HTMLInputElement).value.toLowerCase();
@@ -42,10 +44,7 @@ export class LojaComponent {
     else
     {
       var listaData = this.lojas;
-      var listaFiltrada = listaData.filter(element => {
-        element.nome.toLowerCase().includes(valorFiltro)
-        element.cnpj.toLowerCase().includes(valorFiltro)
-      });
+      var listaFiltrada = listaData.filter(element => element.nome.toLowerCase().includes(valorFiltro));
       this.lojas = listaFiltrada;
     }
   }

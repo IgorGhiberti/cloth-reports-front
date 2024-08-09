@@ -17,7 +17,7 @@ export class FormularioLojaComponent {
   @Input() btnTitulo!: string;
   @Input() btnAcao!: string;
   @Input() isDisabled: boolean = false;
-  @Input() dadosloja: Loja | null = null;
+  @Input() dadosLoja: Loja | null = null;
   lojaForm!: FormGroup;
 
   loja!: Loja;
@@ -26,9 +26,9 @@ export class FormularioLojaComponent {
   ngOnInit(): void {
 
     this.lojaForm = new FormGroup({
-      idloja: new FormControl(this.dadosloja ? this.dadosloja.idloja: 0),
-      nome: new FormControl({value: this.dadosloja ? this.dadosloja.nome: '', disabled: this.isDisabled}, [Validators.required]),
-      cnpj: new FormControl(this.dadosloja ? this.dadosloja.cnpj : '')
+      idloja: new FormControl(this.dadosLoja ? this.dadosLoja.idloja: 0),
+      nome: new FormControl({value: this.dadosLoja ? this.dadosLoja.nome: '', disabled: this.isDisabled}, [Validators.required]),
+      cnpj: new FormControl({value: this.dadosLoja ? this.dadosLoja.cnpj : '', disabled: this.isDisabled})
     })
   }
 

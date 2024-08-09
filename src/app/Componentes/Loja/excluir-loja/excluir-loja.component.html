@@ -1,1 +1,9 @@
-<p>excluir-loja works!</p>
+<div *ngIf="loja">
+  <app-formulario-loja
+  [btnAcao]="btnAcao"
+  [btnTitulo]="btnTitulo"
+  [dadosLoja]="loja"
+  [isDisabled]="true"
+  (onSubmitFunction)="excluirLoja($event)">
+  </app-formulario-loja>
+</div>
