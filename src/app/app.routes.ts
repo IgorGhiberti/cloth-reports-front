@@ -17,6 +17,10 @@ import { LojaComponent } from './Componentes/Loja/loja/loja.component';
 import { CadastroLojaComponent } from './Componentes/Loja/cadastro-loja/cadastro-loja.component';
 import { EditarLojaComponent } from './Componentes/Loja/editar-loja/editar-loja.component';
 import { ExcluirLojaComponent } from './Componentes/Loja/excluir-loja/excluir-loja.component';
+import { ProdutoComponent } from './Componentes/Produto/produto/produto.component';
+import { CadastroProdutoComponent } from './Componentes/Produto/cadastro-produto/cadastro-produto.component';
+import { EditarProdutoComponent } from './Componentes/Produto/editar-produto/editar-produto.component';
+import { ExcluirProdutoComponent } from './Componentes/Produto/excluir-produto/excluir-produto.component';
 
 export const routes: Routes = [
   {path: '', component: HomeComponent},
@@ -36,5 +40,9 @@ export const routes: Routes = [
   {path: 'loja', component: LojaComponent},
   {path: 'cadastro-loja', component: CadastroLojaComponent},
   {path: 'loja/editar/:id', component: EditarLojaComponent},
-  {path: 'loja/excluir/:id', component: ExcluirLojaComponent}
+  {path: 'loja/excluir/:id', component: ExcluirLojaComponent},
+  {path: 'produto', component: ProdutoComponent},
+  {path: 'cadastro-produto', component: CadastroProdutoComponent},
+  {path: 'produto/editar/:id', component: EditarProdutoComponent},
+  {path: 'produto/excluir/:id', component: ExcluirProdutoComponent}
 ];

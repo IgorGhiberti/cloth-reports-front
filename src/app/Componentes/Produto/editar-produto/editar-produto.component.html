@@ -1,0 +1,10 @@
+@if (produto) {
+<div>
+  <app-formulario-produto
+  [btnAcao]="btnAcao"
+  [btnTitulo]="btnTitulo"
+  [visualizacaoProduto]="produto"
+  (onSubmitFunction)="editarProduto($event)">
+  </app-formulario-produto>
+</div>
+}

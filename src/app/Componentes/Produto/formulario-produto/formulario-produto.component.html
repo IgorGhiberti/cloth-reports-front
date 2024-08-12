@@ -1,0 +1,44 @@
+<div class="container">
+  <div class="title">
+    <h1>{{ btnTitulo }}</h1>
+  </div>
+    <form [formGroup]="produtoForm" (ngSubmit)="submitFunction()" #formDit="ngForm">
+      <input type="hidden" formControlName="idproduto">
+    <div>
+      <label>Nome: </label>
+      <input type="text" formControlName="nome">
+    </div>
+    <div>
+      <label>Valor do produto: </label>
+      <input type="text" formControlName="valor_unitario">
+    </div>
+    <div>
+      <label>Categoria do produto: </label>
+      <select formControlName="idcategoria">
+        @for (item of categorias; track item.idcategoria) {
+        <option value="{{ item.idcategoria }}">{{ item.nome }}</option>
+      }
+      </select>
+    </div>
+    <div>
+      <label>Tamanho do produto: </label>
+      <select formControlName="idtamanho">
+        @for (item of tamanhos; track item.idtamanho) {
+        <option value="{{ item.idtamanho }}">{{ item.nome }}</option>
+      }
+      </select>
+    </div>
+    <div>
+      <label>Marca do produto: </label>
+      <select formControlName="idmarca">
+        @for (item of marcas; track item.idmarca) {
+        <option value="{{ item.idmarca }}">{{ item.nome }}</option>
+      }
+      </select>
+    </div>
+    <div>
+      <button [disabled]="!produtoForm.valid" type="submit">{{ btnAcao }}</button>
+      <button (click)="btnRedirect($event, 'produto')">Voltar</button>
+    </div>
+    </form>
+</div>
