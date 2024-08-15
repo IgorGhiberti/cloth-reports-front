@@ -2,7 +2,6 @@ import { Component, OnInit } from '@angular/core';
 import { FormularioProdutoComponent } from "../formulario-produto/formulario-produto.component";
 import { ProdutoService } from '../../../Services/produto.service';
 import { ActivatedRoute, Router } from '@angular/router';
-import { ProdutoView } from '../../../Models/produtoview';
 import { Produto } from '../../../Models/produto';
 
 @Component({
@@ -16,7 +15,7 @@ export class EditarProdutoComponent implements OnInit {
 
   btnAcao = 'Confirmar edição';
   btnTitulo = 'Editar produto';
-  produto!: ProdutoView;
+  produto!: Produto;
   idNumber!: number;
 
   constructor(private produtoService: ProdutoService, private router: ActivatedRoute, private route: Router){}

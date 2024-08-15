@@ -21,6 +21,7 @@ import { ProdutoComponent } from './Componentes/Produto/produto/produto.componen
 import { CadastroProdutoComponent } from './Componentes/Produto/cadastro-produto/cadastro-produto.component';
 import { EditarProdutoComponent } from './Componentes/Produto/editar-produto/editar-produto.component';
 import { ExcluirProdutoComponent } from './Componentes/Produto/excluir-produto/excluir-produto.component';
+import { ProdutosLojaComponent } from './Componentes/ProdutosLoja/produtos-loja/produtos-loja.component';
 
 export const routes: Routes = [
   {path: '', component: HomeComponent},
@@ -44,5 +45,6 @@ export const routes: Routes = [
   {path: 'produto', component: ProdutoComponent},
   {path: 'cadastro-produto', component: CadastroProdutoComponent},
   {path: 'produto/editar/:id', component: EditarProdutoComponent},
-  {path: 'produto/excluir/:id', component: ExcluirProdutoComponent}
+  {path: 'produto/excluir/:id', component: ExcluirProdutoComponent},
+  {path: 'produtosLoja/loja/:idloja', component: ProdutosLojaComponent}
 ];

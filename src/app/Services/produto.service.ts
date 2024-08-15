@@ -21,9 +21,9 @@ export class ProdutoService {
   }
 
   //Lista apenas um produto
-  getProdutoById(id: number): Observable<ProdutoView>
+  getProdutoById(id: number): Observable<Produto>
   {
-    return this.httpClient.get<ProdutoView>(`${this.url}/${id}`);
+    return this.httpClient.get<Produto>(`${this.url}/${id}`);
   }
 
   //Edita um produto

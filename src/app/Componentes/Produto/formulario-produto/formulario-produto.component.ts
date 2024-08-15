@@ -31,14 +31,19 @@ export class FormularioProdutoComponent {
   categorias: Categoria [] = [];
   tamanhos: Tamanho [] = [];
   produto!: Produto;
+  produtoView!: ProdutoView;
+  idNumber!: number;
   constructor(private router: Router,
     private marcaService: MarcaService,
     private tamanhoService: TamanhoService,
-    private categoriaSerivce: CategoriaService
+    private categoriaSerivce: CategoriaService,
+    private produtoService: ProdutoService,
+    private route: ActivatedRoute
   ){}
 
   ngOnInit(): void {
-
+    const id = Number(this.route.snapshot.paramMap.get('id'));
+    this.idNumber = id;
     this.getMarcas();
     this.getTamanhos();
     this.getCategorias();
@@ -50,7 +55,6 @@ export class FormularioProdutoComponent {
       idtamanho: new FormControl({value: this.dadosProduto ? this.dadosProduto.idtamanho: 0, disabled: this.isDisabled}, [Validators.required]),
       idmarca: new FormControl({value: this.dadosProduto ? this.dadosProduto.idmarca: 0, disabled: this.isDisabled}, [Validators.required])
     })
-    console.log(this.produtoForm.value)
   }
 
   //Redireciona a rota

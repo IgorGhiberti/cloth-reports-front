@@ -1,1 +1,10 @@
-<p>excluir-produto works!</p>
+@if(produto){
+  <div>
+    <app-formulario-produto
+    [btnAcao]="btnAcao"
+    [btnTitulo]="btnTitulo"
+    [dadosProduto]="produto"
+    [isDisabled]="true"
+    (onSubmitFunction)="excluirProduto($event)"></app-formulario-produto>
+  </div>
+}
