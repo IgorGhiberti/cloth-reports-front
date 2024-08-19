@@ -25,7 +25,6 @@ export class FormularioProdutoComponent {
   @Input() btnAcao!: string;
   @Input() isDisabled: boolean = false;
   @Input() dadosProduto: Produto | null = null;
-  @Input() visualizacaoProduto: ProdutoView | null = null;
   produtoForm!: FormGroup;
   marcas: Marca [] = [];
   categorias: Categoria [] = [];

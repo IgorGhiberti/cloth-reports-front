@@ -1,38 +1,110 @@
 <div class="container">
-  <div class="title">
-    <h2>Lojas</h2>
-  </div>
+  @if(loja){
+    <div class="title">
+      <h2>Produtos cadastrados na Loja: {{ loja.nome }}</h2>
+    </div>
 
-  <div class="actions-container">
-    <button class="cadastrar" (click)="btnRedirect($event, 'cadastro-produtoLoja')">Cadastrar loja</button>
-    <input type="search" placeholder="Pesquisar loja" class="form-control" aria-label="Default" aria-describedby="inputGroup-sizing-default">
-  </div>
 
-  <div class="tabela-loja">
-    <table class="table">
-      <thead>
-        <tr>
-          <th scope="col">Nome da loja</th>
-          <th scope="col"></th>
-          <th scope="col"></th>
-        </tr>
-      </thead>
-      <tbody>
-        @for (produtoLoja of produtosLoja; track produtoLoja.idprodutoloja) {
-          <tr>
-            <td>{{ produtoLoja.idloja }}</td>
-            <td>{{ produtoLoja.idproduto }}</td>
-            <td class="text-end btn-action">
-              <button type="button" class="btn btn-primary btn-sm" style="margin-right: 1rem;" (click)="btnRedirect($event, 'loja/editar/' + produtoLoja.idprodutoloja)">Editar</button>
-              <button type="button" class="btn btn-danger btn-sm" (click)="btnRedirect($event, 'loja/excluir/' + produtoLoja.idprodutoloja)">Excluir</button>
-            </td>
-          </tr>
-        }
-      </tbody>
-    </table>
-  </div>
+    <div class="actions-container">
+      <button class="cadastrar" (click)="btnRedirect($event, 'produtosLoja/cadastro/' + loja.idloja)">Cadastrar produto na loja {{loja.nome}}</button>
+      <input type="search" placeholder="Pesquisar loja" class="form-control" aria-label="Default" aria-describedby="inputGroup-sizing-default">
+    </div>
+  }
+
+  <mat-stepper style="min-width: 100%;" orientation="vertical" class="mt-5">
+    <mat-step>
+      <ng-template matStepLabel>Vendidos</ng-template>
+      <div class="tabela-loja">
+        <table class="table">
+          <thead>
+            <tr>
+              <th scope="col">Nome do Produto</th>
+              <th scope=col>Valor</th>
+              <th scope="col">Marca</th>
+              <th scope="col">Categoria</th>
+              <th scope="col">Tamanho</th>
+              <th scope="col">Já foi vendido?</th>
+              <th scope="col"></th>
+              <th scope="col"></th>
+              <th scope="col"></th>
+            </tr>
+          </thead>
+          <tbody>
+            @for (produtoLoja of produtosLojaVendidos; track produtoLoja.idprodutoloja) {
+              @if (produtoLoja) {
+              <tr>
+                <td>{{ produtoLoja.nome }}</td>
+                <td>{{ produtoLoja.valor_unitario }}</td>
+                <td>{{ produtoLoja.marca }}</td>
+                <td>{{ produtoLoja.categoria }}</td>
+                <td>{{ produtoLoja.tamanho }}</td>
+                  <td>{{ produtoLoja.vendido ? 'Sim' : 'Não' }}</td>
+                  <td class="text-end btn-action">
+                    <button type="button" class="btn btn-primary btn-sm" style="margin-right: 1rem;" (click)="alterarParaVendido(produtoLoja.idprodutoloja)">Alterar para vendido</button>
+                    <button type="button" class="btn btn-danger btn-sm" (click)="alterarParaNaoVendido(produtoLoja.idprodutoloja)">Alterar para não vendido</button>
+                    <button style="margin-left: 1rem;" type="button" (click)="excluirProdutoLoja(produtoLoja.idprodutoloja)">
+                      <img width="25px" height="25px" src="/delete-1-svgrepo-com.svg">
+                    </button>
+                </td>
+              </tr>
+            }
+            @else if(!produtoLoja) {
+              <h3>Nenhum produto vendido</h3>
+            }
+            }
+          </tbody>
+        </table>
+      </div>
+    </mat-step>
+    <mat-step>
+      <ng-template matStepLabel>Não vendidos</ng-template>
+      <div class="tabela-loja">
+        <table class="table">
+          <thead>
+            <tr>
+              <th scope="col">Nome do Produto</th>
+              <th scope=col>Valor</th>
+              <th scope="col">Marca</th>
+              <th scope="col">Categoria</th>
+              <th scope="col">Tamanho</th>
+              <th scope="col">Já foi vendido?</th>
+              <th scope="col"></th>
+              <th scope="col"></th>
+              <th scope="col"></th>
+            </tr>
+          </thead>
+          <tbody>
+            @for (produtoLoja of produtosLojaNaoVendidos; track produtoLoja.idprodutoloja) {
+              @if (produtoLoja) {
+              <tr>
+                <td>{{ produtoLoja.nome }}</td>
+                <td>{{ produtoLoja.valor_unitario }}</td>
+                <td>{{ produtoLoja.marca }}</td>
+                <td>{{ produtoLoja.categoria }}</td>
+                <td>{{ produtoLoja.tamanho }}</td>
+                <ng-container>
+                  <td>{{ produtoLoja.vendido ? 'Sim' : 'Não' }}</td>
+                  <td class="text-end btn-action">
+                      <button type="button" class="btn btn-primary btn-sm" style="margin-right: 1rem;" (click)="alterarParaVendido(produtoLoja.idprodutoloja)">Alterar para vendido</button>
+                      <button type="button" class="btn btn-danger btn-sm" (click)="alterarParaNaoVendido(produtoLoja.idprodutoloja)">Alterar para não vendido</button>
+                      <button style="margin-left: 1rem;" type="button" (click)="excluirProdutoLoja(produtoLoja.idprodutoloja)">
+                        <img width="25px" height="25px" src="/delete-1-svgrepo-com.svg">
+                      </button>
+                  </td>
+              </ng-container>
+              </tr>
+            }
+            @else if (!produtoLoja) {
+              <h3>Não há produtos não vendidos</h3>
+            }
+            }
+          </tbody>
+        </table>
+      </div>
+    </mat-step>
+  </mat-stepper>
 
   <div>
-    <button (click)="btnRedirect($event, '')">Voltar</button>
+    <button (click)="btnRedirect($event, 'loja')">Voltar</button>
   </div>
 </div>

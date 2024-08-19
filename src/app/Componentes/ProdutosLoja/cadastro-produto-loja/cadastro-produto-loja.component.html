@@ -1,0 +1,24 @@
+
+<div class="container">
+  @if(produtos && loja){
+  <div class="title">
+    <h1>Cadastrar produto na {{ loja.nome }}</h1>
+  </div>
+  <form [formGroup]="produtoLojaForm" (ngSubmit)="submit()" #formDit="ngForm">
+    <input type="hidden" formControlName="idprodutoloja">
+    <div>
+      <label>Produto: </label>
+      <select formControlName="idproduto">
+        @for(item of produtos; track item.idproduto){
+          <option value="{{ item.idproduto }}">{{ item.nomeproduto }}</option>
+        }
+      </select>
+    </div>
+    <input type="hidden" formControlName="idloja">
+    <div>
+      <button [disabled]="!produtoLojaForm.valid" (click)="cadastroProdutoLoja()" type="submit">Cadastrar produto na loja {{ loja.nome }}</button>
+      <button (click)="btnRedirect($event, 'produtosLoja/loja/' + loja.idloja)">Voltar</button>
+    </div>
+  </form>
+}
+</div>

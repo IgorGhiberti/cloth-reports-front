@@ -1,6 +1,10 @@
 export interface ProdutosLoja{
   idprodutoloja: number,
   idproduto: number,
-  idloja: number,
-  vendido: boolean
+  vendido: boolean,
+  nome: string,
+  valor_unitario: number,
+  marca: string,
+  tamanho: string,
+  categoria: string
 }
