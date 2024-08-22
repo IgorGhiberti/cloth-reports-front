@@ -4,8 +4,6 @@ import { ProdutosLoja } from '../../../Models/produtosLoja';
 import { ProdutosLojaService } from '../../../Services/produtos-loja.service';
 import { Loja } from '../../../Models/loja';
 import { LojaService } from '../../../Services/loja.service';
-import { ProdutoService } from '../../../Services/produto.service';
-import { ProdutoView } from '../../../Models/produtoview';
 import { MatButtonModule } from '@angular/material/button';
 import {MatStepperModule} from '@angular/material/stepper';
 
@@ -18,8 +16,7 @@ import {MatStepperModule} from '@angular/material/stepper';
 })
 export class ProdutosLojaComponent implements OnInit {
 
-  produtosLojaNaoVendidos: ProdutosLoja [] = [];
-  produtosLojaVendidos: ProdutosLoja [] = [];
+  produtosLoja: ProdutosLoja [] = [];
   produtoLojaEspecifico!: ProdutosLoja;
   loja!: Loja;
   idLoja!: number;
@@ -34,35 +31,22 @@ export class ProdutosLojaComponent implements OnInit {
     const id = Number(this.route.snapshot.paramMap.get('idloja'));
     this.idLoja = id;
     this.getLojaById();
-    this.getProdutosLojaVendidos();
     this.getProdutosNaoVendidos();
   }
 
   //Exibe os produtos vendidos da loja
-  getProdutosLojaVendidos()
-  {
-    this.produtosLojaService.getProdutosVendidos(this.idLoja).subscribe({
-      next: res => {
-        this.produtosLojaVendidos = res,
-        console.log('produtos loja vendidos', this.produtosLojaVendidos)
-      },
-      error: err => {
-        alert('Não existem produtos vendidos para serem exibidos'),
-        this.produtosLojaVendidos = []
-      }
-    })
-  }
+
 
   //Exibe os produtos não vendidos da loja
   getProdutosNaoVendidos()
   {
-    this.produtosLojaService.getProdutosNaoVendidos(this.idLoja).subscribe({
+    this.produtosLojaService.getProdutosLojas(this.idLoja).subscribe({
       next: res => {
-        this.produtosLojaNaoVendidos = res
+        this.produtosLoja = res
       },
       error: err => {
-        alert('Não existem produtos não vendidos para serem exibidos'),
-        this.produtosLojaNaoVendidos = []
+        alert(err.message + 'Não existem produtos não vendidos para serem exibidos')
+        this.produtosLoja = []
       }
     })
   }
@@ -85,27 +69,25 @@ export class ProdutosLojaComponent implements OnInit {
     this.router.navigateByUrl(rota);
   }
 
-  //Altera para não vendido
-  alterarParaNaoVendido(idprodutoloja: number)
+  //Aumenta a quantidade
+  quantidadeMais(idprodutoloja: number)
   {
-    this.produtosLojaService.deleteProdutosLojaNaoVendido(idprodutoloja).subscribe({
+    this.produtosLojaService.putQuantidadeMaisProdutosLoja(idprodutoloja).subscribe({
       next: res => {
         this.produtoLojaEspecifico = res,
-        this.getProdutosNaoVendidos();
-        this.getProdutosLojaVendidos();
+        this.getProdutosNaoVendidos()
       },
       error: err => console.log(err)
     })
   }
 
   //Alter para vendido
-  alterarParaVendido(idprodutoloja: number)
+  quantidadeMenos(idprodutoloja: number)
   {
-    this.produtosLojaService.putProdutosLojaVendido(idprodutoloja).subscribe({
+    this.produtosLojaService.putQuantidadeMenosProdutosLoja(idprodutoloja).subscribe({
       next: res => {
         this.produtoLojaEspecifico = res,
-        this.getProdutosLojaVendidos();
-        this.getProdutosNaoVendidos();
+        this.getProdutosNaoVendidos()
       },
       error: err => console.log(err)
     })
@@ -117,11 +99,11 @@ export class ProdutosLojaComponent implements OnInit {
     this.produtosLojaService.deleteProdutosLoja(idprodutoloja).subscribe({
       next: res => {
         console.log(res),
-        this.getProdutosLojaVendidos(),
         this.getProdutosNaoVendidos()
       },
       error: err => {
-        console.log(err)
+        console.log(err),
+        this.getProdutosNaoVendidos()
       }
     })
   }

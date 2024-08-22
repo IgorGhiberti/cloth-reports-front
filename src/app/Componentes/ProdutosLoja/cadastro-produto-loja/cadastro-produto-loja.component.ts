@@ -39,7 +39,8 @@ export class CadastroProdutoLojaComponent implements OnInit {
     this.produtoLojaForm = new FormGroup({
       idprodutoloja: new FormControl(0),
       idproduto: new FormControl(0, Validators.required),
-      idloja: new FormControl(this.idloja)
+      idloja: new FormControl(this.idloja),
+      quantidade_produto: new FormControl(1)
     })
   }
 
@@ -90,10 +91,17 @@ export class CadastroProdutoLojaComponent implements OnInit {
     this.produtoLojaService.postProdutosLoja(this.idloja, formValue).subscribe({
       next: res => {
         this.produtoLoja = res,
-        console.log('Valor cadastrado', this.produtoLoja)
-        console.log('chamou')
+        console.log('Produto loja cadastrado: ', this.produtoLoja)
       },
-      error: err => console.log(err)
+      error: err => {
+        if(err.statusText == 'Bad Request')
+        {
+          alert(err.message = 'Este produto já está nesta loja')
+        }
+        else if (err.statusText != 'Bad Request'){
+          alert(err.message = 'Ocorreu um erro desconhecido')
+        }
+      }
     })
     this.router.navigateByUrl('produtosLoja/loja/' + this.idloja)
   }

@@ -13,16 +13,10 @@ export class ProdutosLojaService {
 
   constructor(private httpCLient : HttpClient) { }
 
-  //Retorna todos os produtos vendidos
-  getProdutosVendidos(idloja: number): Observable<ProdutosLoja[]>
+  //Retorna todos os produtos daquela loja
+  getProdutosLojas(idloja: number): Observable<ProdutosLoja[]>
   {
-    return this.httpCLient.get<ProdutosLoja[]>(`${this.url}/produtoLoja/loja/${idloja}/vendido`);
-  }
-
-  //Retorna todos os produtos não vendidos
-  getProdutosNaoVendidos(idloja: number): Observable<ProdutosLoja[]>
-  {
-    return this.httpCLient.get<ProdutosLoja[]>(`${this.url}/produtoLoja/loja/${idloja}/nao-vendido`);
+    return this.httpCLient.get<ProdutosLoja[]>(`${this.url}/produtoLoja/loja/${idloja}`);
   }
 
   //Cria uma nova relação entre produto e loja
@@ -31,16 +25,16 @@ export class ProdutosLojaService {
     return this.httpCLient.post<ProdutosLoja>(`${this.url}/produtoLoja/loja/${idloja}`, produtosLoja)
   }
 
-  //Edita de vendido para não vendido
-  deleteProdutosLojaNaoVendido(idprodutoloja: number): Observable<ProdutosLoja>
+  //Quantidade ++
+  putQuantidadeMaisProdutosLoja(idprodutoloja: number): Observable<ProdutosLoja>
   {
-    return this.httpCLient.delete<ProdutosLoja>(`${this.url}/${idprodutoloja}/nao-vendido`)
+    return this.httpCLient.put<ProdutosLoja>(`${this.url}/${idprodutoloja}/aumentar`, [])
   }
 
-  //Edita de não vendido para vendido
-  putProdutosLojaVendido(idprodutoloja: number): Observable<ProdutosLoja>
+  //Quantidade --
+  putQuantidadeMenosProdutosLoja(idprodutoloja: number): Observable<ProdutosLoja>
   {
-    return this.httpCLient.put<ProdutosLoja>(`${this.url}/${idprodutoloja}/vendido`, [])
+    return this.httpCLient.put<ProdutosLoja>(`${this.url}/${idprodutoloja}/diminuir`, [])
   }
 
   //Exclui a relação entre um produto e uma loja

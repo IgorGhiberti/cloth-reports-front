@@ -1,16 +1,100 @@
 <div class="container">
-  <form class="form-inline">
+  @if (lojas) {
+  <div class="title">
+    <h1>Cadastrar nova venda</h1>
+  </div>
+
+
+  <form [formGroup]="grupo_VendaForm" (ngSubmit)="submitGrupoVenda()" #formDit="ngForm">
+    <input type="hidden" formControlName="idgrupovenda">
+
     <div>
-      <label for="data-venda">Data da venda</label>
-      <input type="date" name="data-venda" id="data-venda">
+      <label>Data da venda: </label>
+      <input type="date" formControlName="data_venda">
     </div>
-    <label class="my-1 mr-2" for="inlineFormCustomSelectPref">Produtos</label>
-    <select class="form-select form-select-sm" aria-label=".form-select-sm example">
-      <option selected>Escolha o produto que será vendido</option>
-      <option value="1">One</option>
-      <option value="2">Two</option>
-      <option value="3">Three</option>
-    </select>
+
+    <div>
+
+      <div>
+        <label>Loja: </label>
+        <select formControlName="idprodutoloja" (change)="onLojaChange($event)">
+          @for(loja of lojas; track loja.idloja){
+            <option value="{{ loja.idloja }}">{{ loja.nome }}</option>
+          }
+        </select>
+      </div>
+
+      <div>
+        <label>Produtos disponíveis: </label>
+        @for(produto of produtosLoja; track produto.idproduto){
+        <select formControlName="idprodutoloja" (change)="onProdutoChange($event)">
+            <option value="{{ produto.idprodutoloja }}">{{ produto.nome }}</option>
+        </select>
+        <div>
+          <label>Valor: </label>
+          <input type="text" [value]="selectedProduto?.valor_unitario" disabled placeholder="{{ produto.valor_unitario }}">
+        </div>
+      }
+      </div>
+
+      <div>
+        <label>Quantidade disponível: </label>
+        @for (qtd of produtosLoja; track qtd.quantidade_produto) {
+        <input type="number" [value]="selectedProduto?.quantidade_produto" placeholder="{{ qtd.quantidade_produto }}" disabled>
+      }
+      </div>
+
+      <div>
+        <label>Quantidade que será vendida: </label>
+          <input type="number" formControlName="quantidade_vendido" (input)="onQuantidadeChange($event)">
+      </div>
+
+      <div>
+        <label>Valor final: </label>
+          <input disabled type="number" value="{{ valorFinal }}">
+      </div>
+
+    </div>
+
+    <div>
+      <button [disabled]="!grupo_VendaForm.valid" (click)="addVenda()" type="button">Adicionar venda</button>
+      <button (click)="btnRedirect($event, '')">Voltar</button>
+    </div>
 
   </form>
+}
+
+<div class="table-vendas-adicionadas mt-4">
+  <table>
+    <thead class="table">
+      <tr>
+        <th scope="col">Data da venda</th>
+        <th scope="col">Loja</th>
+        <th scope="col">Produto</th>
+        <th scope="col">Quantidade vendida</th>
+        <th scope="col">Valor Final</th>
+        <th scope="col"></th>
+      </tr>
+    </thead>
+    <tbody>
+      @for (venda of gruposVenda; track $index) {
+        @if(gruposVenda){
+        <tr>
+          <td>{{ venda.data_venda | date : 'd/M/yy' }}</td>
+          <td>{{ venda.loja }}</td>
+          <td>{{ venda.produto }}</td>
+          <td>{{ venda.quantidade_vendido }}</td>
+          <td>{{ venda.quantidade_vendido * venda.valor_unitario }}</td>
+          <td>
+            <button (click)="excluirVenda($index)" type="button">Excluir venda</button>
+          </td>
+        </tr>
+      }
+      }
+    </tbody>
+  </table>
+  <div>
+    <button type="submit" (click)="cadastrarVendaEGrupoVenda()">Cadastrar todas as vendas</button>
+  </div>
+</div>
 </div>

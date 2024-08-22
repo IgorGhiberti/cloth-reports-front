@@ -23,13 +23,13 @@
               <th scope="col">Marca</th>
               <th scope="col">Categoria</th>
               <th scope="col">Tamanho</th>
-              <th scope="col">Já foi vendido?</th>
+              <th scope="col">Quantidade</th>
               <th scope="col"></th>
               <th scope="col"></th>
               <th scope="col"></th>
             </tr>
           </thead>
-          <tbody>
+          <!-- <tbody>
             @for (produtoLoja of produtosLojaVendidos; track produtoLoja.idprodutoloja) {
               @if (produtoLoja) {
               <tr>
@@ -52,7 +52,7 @@
               <h3>Nenhum produto vendido</h3>
             }
             }
-          </tbody>
+          </tbody> -->
         </table>
       </div>
     </mat-step>
@@ -67,14 +67,14 @@
               <th scope="col">Marca</th>
               <th scope="col">Categoria</th>
               <th scope="col">Tamanho</th>
-              <th scope="col">Já foi vendido?</th>
+              <th scope="col">Quantidade</th>
               <th scope="col"></th>
               <th scope="col"></th>
               <th scope="col"></th>
             </tr>
           </thead>
           <tbody>
-            @for (produtoLoja of produtosLojaNaoVendidos; track produtoLoja.idprodutoloja) {
+            @for (produtoLoja of produtosLoja; track produtoLoja.idprodutoloja) {
               @if (produtoLoja) {
               <tr>
                 <td>{{ produtoLoja.nome }}</td>
@@ -82,16 +82,14 @@
                 <td>{{ produtoLoja.marca }}</td>
                 <td>{{ produtoLoja.categoria }}</td>
                 <td>{{ produtoLoja.tamanho }}</td>
-                <ng-container>
-                  <td>{{ produtoLoja.vendido ? 'Sim' : 'Não' }}</td>
+                <td>{{ produtoLoja.quantidade_produto }}</td>
                   <td class="text-end btn-action">
-                      <button type="button" class="btn btn-primary btn-sm" style="margin-right: 1rem;" (click)="alterarParaVendido(produtoLoja.idprodutoloja)">Alterar para vendido</button>
-                      <button type="button" class="btn btn-danger btn-sm" (click)="alterarParaNaoVendido(produtoLoja.idprodutoloja)">Alterar para não vendido</button>
+                      <button type="button" class="btn btn-primary btn-sm" style="margin-right: 1rem;" (click)="quantidadeMais(produtoLoja.idprodutoloja)">++</button>
+                      <button type="button" class="btn btn-danger btn-sm" (click)="quantidadeMenos(produtoLoja.idprodutoloja)">--</button>
                       <button style="margin-left: 1rem;" type="button" (click)="excluirProdutoLoja(produtoLoja.idprodutoloja)">
                         <img width="25px" height="25px" src="/delete-1-svgrepo-com.svg">
                       </button>
                   </td>
-              </ng-container>
               </tr>
             }
             @else if (!produtoLoja) {
