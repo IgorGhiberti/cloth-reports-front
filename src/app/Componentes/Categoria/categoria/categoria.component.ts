@@ -1,5 +1,5 @@
 import { CommonModule } from '@angular/common';
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { Categoria } from '../../../Models/categoria';
 import { CategoriaService } from '../../../Services/categoria.service';
 import { Router } from '@angular/router';
@@ -11,11 +11,14 @@ import { Router } from '@angular/router';
   templateUrl: './categoria.component.html',
   styleUrl: './categoria.component.scss'
 })
-export class CategoriaComponent {
+export class CategoriaComponent implements OnInit {
 
   categorias: Categoria[] = [];
 
   constructor(private categoriaService: CategoriaService, private router: Router){
+
+  }
+  ngOnInit(): void {
     this.getCategorias();
   }
 

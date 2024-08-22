@@ -23,7 +23,7 @@ import { CommonModule } from '@angular/common';
 export class CadastroVendaComponent implements OnInit {
 
   produtosLoja: ProdutosLoja [] = [];
-  vendaDetalhada: any;
+  vendaDetalhada!: Grupo_Venda;
   contador: number = 0;
   produto!: Produto;
   lojas: Loja [] = [];
@@ -127,27 +127,59 @@ export class CadastroVendaComponent implements OnInit {
 
   //Adiciona as vendas pra tabela de vendas
   addVenda(): void {
-    if (this.grupo_VendaForm.valid) {
-      const formValue = this.grupo_VendaForm.value;
-
-      this.vendaDetalhada = {
-        ...formValue,
-        produto: this.selectedProduto?.nome || '', // Adiciona o nome do produto
-        loja: this.lojas.find(loja => loja.idloja === this.idLoja)?.nome || '',
-        valor_unitario: this.selectedProduto?.valor_unitario || 0
-      };
-
-      this.gruposVenda.push(this.vendaDetalhada);  // Adiciona a venda detalhada ao array
-      console.log('Venda adicionada: ', this.vendaDetalhada);
+    if(this.selectedProduto && this.selectedProduto.quantidade_produto > 0){
+      if (this.grupo_VendaForm.valid) {
+        const formValue: Grupo_Venda = this.grupo_VendaForm.value;
+        this.vendaDetalhada = {
+          ...formValue,
+          produto: this.selectedProduto?.nome || '', // Adiciona o nome do produto
+          loja: this.lojas.find(loja => loja.idloja === this.idLoja)?.nome || '',
+          valor_unitario: this.selectedProduto?.valor_unitario || 0
+        };
+        this.gruposVenda.push(this.vendaDetalhada);  // Adiciona a venda detalhada ao array
+        console.log('Venda adicionada: ', this.vendaDetalhada);
+        this.selectedProduto.quantidade_produto = this.selectedProduto.quantidade_produto - this.vendaDetalhada.quantidade_vendido
+      }
+    }
+    else{
+      alert('Só é possível adicionar produtos com ao menos 1 unidade disponível!')
     }
   }
 
   //Exclui a venda do formulário
   excluirVenda(index: number)
   {
+    const vendaExcluida = this.gruposVenda[index];
+    if(this.selectedProduto)
+    {
+      this.selectedProduto.quantidade_produto = vendaExcluida.quantidade_vendido + this.selectedProduto.quantidade_produto
+    }
     this.gruposVenda.splice(index, 1);
   }
 
+  //Aumentar quantidade
+  aumentarQtd(index: number)
+  {
+    if(this.selectedProduto && this.selectedProduto?.quantidade_produto > this.gruposVenda[index].quantidade_vendido)
+    {
+      this.gruposVenda[index].quantidade_vendido ++
+    }
+
+  }
+
+  //Diminuir quantidade
+  diminuirQtd(index: number)
+  {
+    if(this.selectedProduto && this.selectedProduto.quantidade_produto >= this.gruposVenda[index].quantidade_vendido)
+    {
+      if(this.gruposVenda[index].quantidade_vendido > 1)
+        {
+          this.gruposVenda[index].quantidade_vendido --
+        }
+    }
+
+
+  }
 
   //Submit do formulário grupo venda
   submitGrupoVenda()

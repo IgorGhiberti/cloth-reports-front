@@ -45,8 +45,6 @@
           <td>{{ venda.quantidade_vendido }}</td>
           <td>{{ venda.quantidade_vendido * venda.valor_unitario }}</td>
           <td class="text-end btn-action">
-            <button type="button" (click)="aumentarQuantidade(venda.idgrupovenda)" class="btn btn-primary btn-sm" style="margin-right: 1rem;">++</button>
-            <button type="button" (click)="diminuirQuantidade(venda.idgrupovenda)" class="btn btn-danger btn-sm" style="margin-right: 1rem;">--</button>
             <button type="button" class="btn btn-danger btn-sm">Excluir</button>
           </td>
         </tr>

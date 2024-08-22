@@ -41,30 +41,6 @@ export class HomeComponent implements OnInit {
     })
   }
 
-  //Aumenta a quantidade
-  aumentarQuantidade(idgrupovenda: number)
-  {
-    this.grupo_vendaService.putGrupoVendaMais(idgrupovenda).subscribe({
-      next: res => {
-        this.grupoVenda = res,
-        this.getGrupoVenda()
-      },
-      error: err => console.log(err)
-    })
-  }
-
-  //Diminui a quantidade
-  diminuirQuantidade(idgrupovenda: number)
-  {
-    this.grupo_vendaService.putGrupoVendaMenos(idgrupovenda).subscribe({
-      next: res => {
-        this.grupoVenda = res,
-        this.getGrupoVenda()
-      },
-      error: err => console.log(err)
-    })
-  }
-
   btnRedirect(event: Event, rota: string)
   {
     event.preventDefault();

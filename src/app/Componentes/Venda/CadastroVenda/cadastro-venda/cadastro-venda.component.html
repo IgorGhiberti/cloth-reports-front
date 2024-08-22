@@ -46,7 +46,7 @@
 
       <div>
         <label>Quantidade que será vendida: </label>
-          <input type="number" formControlName="quantidade_vendido" (input)="onQuantidadeChange($event)">
+          <input type="number" min="1" [attr.max]="selectedProduto?.quantidade_produto" formControlName="quantidade_vendido" (input)="onQuantidadeChange($event)">
       </div>
 
       <div>
@@ -87,6 +87,8 @@
           <td>{{ venda.quantidade_vendido * venda.valor_unitario }}</td>
           <td>
             <button (click)="excluirVenda($index)" type="button">Excluir venda</button>
+            <button (click)="aumentarQtd($index)" type="button">++</button>
+            <button (click)="diminuirQtd($index)" type="button">--</button>
           </td>
         </tr>
       }
