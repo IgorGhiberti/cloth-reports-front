@@ -10,15 +10,27 @@
 <div class="primeiro-container">
   <button class="cadastrar"  (click)="btnRedirect($event, 'cadastro')">Cadastrar venda</button>
   <mat-form-field>
-    <mat-label>Selecione o intervalo</mat-label>
-    <mat-date-range-input [rangePicker]="picker">
-      <input matStartDate placeholder="Start date">
-      <input matEndDate placeholder="End date">
+    <mat-label>Escolha um período de data</mat-label>
+    <mat-date-range-input [formGroup]="range" [rangePicker]="picker">
+      <input matStartDate formControlName="start" placeholder="Start date">
+      <input matEndDate formControlName="end" placeholder="End date">
     </mat-date-range-input>
-    <mat-hint>DD/MM/AAAA – DD/MM/AAAA</mat-hint>
+    <mat-hint>{{range.value.start | date : 'd/MM/yy'}} – {{range.value.end | date : 'd/MM/yy'}}</mat-hint>
     <mat-datepicker-toggle matIconSuffix [for]="picker"></mat-datepicker-toggle>
     <mat-date-range-picker #picker></mat-date-range-picker>
+
+    <!-- @if (range.controls.start.hasError('matStartDateInvalid')) {
+      <mat-error>Invalid start date</mat-error>
+    }
+    @if (range.controls.end.hasError('matEndDateInvalid')) {
+      <mat-error>Invalid end date</mat-error>
+    } -->
   </mat-form-field>
+  <div>
+    <button (click)="getVendasWithFilter()">Filtrar</button>
+    <button (click)="clearFilter()">Limpar filtros</button>
+  </div>
+
 </div>
 
 <div class="tabela-venda">
@@ -45,7 +57,7 @@
           <td>{{ venda.quantidade_vendido }}</td>
           <td>{{ venda.quantidade_vendido * venda.valor_unitario }}</td>
           <td class="text-end btn-action">
-            <button type="button" class="btn btn-danger btn-sm">Excluir</button>
+            <button type="button" (click)="excluirVenda(venda.idgrupovenda)" class="btn btn-danger btn-sm">Excluir</button>
           </td>
         </tr>
       }

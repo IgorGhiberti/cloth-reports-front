@@ -123,6 +123,7 @@ export class CadastroVendaComponent implements OnInit {
         })
       })
       this.gruposVenda = [];
+      this.router.navigateByUrl('')
   }
 
   //Adiciona as vendas pra tabela de vendas

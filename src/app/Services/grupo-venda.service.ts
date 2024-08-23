@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { environment } from '../../environments/environment.development';
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpParams } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { Grupo_Venda } from '../Models/grupoVenda';
 
@@ -41,5 +41,15 @@ export class GrupoVendaService {
   deleteGrupoVenda(id: number): Observable<Grupo_Venda>
   {
     return this.httpClient.delete<Grupo_Venda>(`${this.url}/${id}`)
+  }
+
+  //Filtra as vendas de acordo com a data
+  getVendasWithDateFilter(start: Date, end: Date) : Observable <Grupo_Venda[]>
+  {
+    const params = new HttpParams()
+    .set('data_inicio', start.toISOString())
+    .set('data_fim', end.toISOString());
+
+    return this.httpClient.get<Grupo_Venda[]>(`${this.url}/filtro-data`, { params })
   }
 }
