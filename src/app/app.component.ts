@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { RouterOutlet } from '@angular/router';
+import { Router, RouterOutlet } from '@angular/router';
 import { HomeComponent } from "./Componentes/home/home.component";
 
 
@@ -12,4 +12,10 @@ import { HomeComponent } from "./Componentes/home/home.component";
 })
 export class AppComponent {
   title = 'clothReportsFront';
+  constructor(private router: Router){}
+  btnRedirect(event: Event, rota: string)
+  {
+    event.preventDefault();
+    this.router.navigateByUrl(rota);
+  }
 }

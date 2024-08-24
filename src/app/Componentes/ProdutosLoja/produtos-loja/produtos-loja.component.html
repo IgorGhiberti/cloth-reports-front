@@ -1,20 +1,23 @@
 <div class="container">
   @if(loja){
     <div class="title">
-      <h2>Produtos cadastrados na Loja: {{ loja.nome }}</h2>
+      <h2>Produtos cadastrados na {{ loja.nome }}</h2>
     </div>
 
 
     <div class="actions-container">
-      <button class="cadastrar" (click)="btnRedirect($event, 'produtosLoja/cadastro/' + loja.idloja)">Cadastrar produto na loja {{loja.nome}}</button>
-      <input type="search" placeholder="Pesquisar loja" class="form-control" aria-label="Default" aria-describedby="inputGroup-sizing-default">
+      <button class="btn btn-primary" (click)="btnRedirect($event, 'produtosLoja/cadastro/' + loja.idloja)">Cadastrar produto na loja {{loja.nome}}</button>
+      <div class="print-buttons">
+        <button type="button" class="btn btn-secondary" printSectionId="print-section" ngxPrint>Imprimir vendidos</button>
+        <button type="button" class="btn btn-secondary" printSectionId="print-section-not-sell" ngxPrint>Imprimir não vendidos</button>
+      </div>
     </div>
   }
 
-  <mat-stepper style="min-width: 100%;" orientation="vertical" class="mt-5">
+  <mat-stepper style="min-width: 100%;" orientation="vertical" class="stepper mt-5">
     <mat-step>
       <ng-template matStepLabel>Vendidos</ng-template>
-      <div class="tabela-loja">
+      <div class="tabela-loja" id="print-section">
         <table class="table">
           <thead>
             <tr>
@@ -24,41 +27,35 @@
               <th scope="col">Categoria</th>
               <th scope="col">Tamanho</th>
               <th scope="col">Quantidade</th>
-              <th scope="col"></th>
-              <th scope="col"></th>
-              <th scope="col"></th>
+              <th scope="col">Total</th>
+              <!-- <th scope="col"></th>
+              <th scope="col"></th> -->
             </tr>
           </thead>
-          <!-- <tbody>
-            @for (produtoLoja of produtosLojaVendidos; track produtoLoja.idprodutoloja) {
-              @if (produtoLoja) {
+          <tbody>
+            @for (produtoVendido of produtosVendidos; track produtoVendido.idgrupovenda) {
+              @if (produtosVendidos) {
               <tr>
-                <td>{{ produtoLoja.nome }}</td>
-                <td>{{ produtoLoja.valor_unitario }}</td>
-                <td>{{ produtoLoja.marca }}</td>
-                <td>{{ produtoLoja.categoria }}</td>
-                <td>{{ produtoLoja.tamanho }}</td>
-                  <td>{{ produtoLoja.vendido ? 'Sim' : 'Não' }}</td>
-                  <td class="text-end btn-action">
-                    <button type="button" class="btn btn-primary btn-sm" style="margin-right: 1rem;" (click)="alterarParaVendido(produtoLoja.idprodutoloja)">Alterar para vendido</button>
-                    <button type="button" class="btn btn-danger btn-sm" (click)="alterarParaNaoVendido(produtoLoja.idprodutoloja)">Alterar para não vendido</button>
-                    <button style="margin-left: 1rem;" type="button" (click)="excluirProdutoLoja(produtoLoja.idprodutoloja)">
-                      <img width="25px" height="25px" src="/delete-1-svgrepo-com.svg">
-                    </button>
-                </td>
+                <td>{{ produtoVendido.nome }}</td>
+                <td>{{ produtoVendido.valor_unitario }}</td>
+                <td>{{ produtoVendido.marca }}</td>
+                <td>{{ produtoVendido.categoria }}</td>
+                <td>{{ produtoVendido.tamanho }}</td>
+                <td>{{ produtoVendido.quantidade_vendido }}</td>
+                <td>{{ produtoVendido.quantidade_vendido * produtoVendido.valor_unitario }}</td>
               </tr>
             }
-            @else if(!produtoLoja) {
+            @else if(!produtosVendidos) {
               <h3>Nenhum produto vendido</h3>
             }
             }
-          </tbody> -->
+          </tbody>
         </table>
       </div>
     </mat-step>
     <mat-step>
       <ng-template matStepLabel>Não vendidos</ng-template>
-      <div class="tabela-loja">
+      <div class="tabela-loja" id="print-section-not-sell">
         <table class="table">
           <thead>
             <tr>
@@ -103,6 +100,6 @@
   </mat-stepper>
 
   <div>
-    <button (click)="btnRedirect($event, 'loja')">Voltar</button>
+    <button class="btn btn-secondary" (click)="btnRedirect($event, 'loja')">Voltar</button>
   </div>
 </div>

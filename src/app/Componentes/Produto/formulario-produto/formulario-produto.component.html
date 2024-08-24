@@ -2,43 +2,50 @@
   <div class="title">
     <h1>{{ btnTitulo }}</h1>
   </div>
-    <form [formGroup]="produtoForm" (ngSubmit)="submitFunction()" #formDit="ngForm">
+    <form [formGroup]="produtoForm" (ngSubmit)="submitFunction()" #formDit="ngForm" class="form-container">
       <input type="hidden" formControlName="idproduto">
-    <div>
+
+    <div class="form-group">
       <label>Nome: </label>
-      <input type="text" formControlName="nome">
+      <input type="text" formControlName="nome" class="form-control">
     </div>
-    <div>
+
+    <div class="form-group">
       <label>Valor do produto: </label>
-      <input type="text" formControlName="valor_unitario">
+      <input type="text" formControlName="valor_unitario" class="form-control">
     </div>
-    <div>
+
+    <div class="form-group">
       <label>Categoria do produto: </label>
-      <select formControlName="idcategoria">
+      <select formControlName="idcategoria" class="form-control">
         @for (item of categorias; track item.idcategoria) {
         <option value="{{ item.idcategoria }}">{{ item.nome }}</option>
       }
       </select>
     </div>
-    <div>
+
+    <div class="form-group">
       <label>Tamanho do produto: </label>
-      <select formControlName="idtamanho">
+      <select formControlName="idtamanho" class="form-control">
         @for (item of tamanhos; track item.idtamanho) {
         <option value="{{ item.idtamanho }}">{{ item.nome }}</option>
       }
       </select>
     </div>
-    <div>
+
+    <div class="form-group">
       <label>Marca do produto: </label>
-      <select formControlName="idmarca">
+      <select formControlName="idmarca" class="form-control">
         @for (item of marcas; track item.idmarca) {
         <option value="{{ item.idmarca }}">{{ item.nome }}</option>
       }
       </select>
     </div>
-    <div>
-      <button [disabled]="!produtoForm.valid" type="submit">{{ btnAcao }}</button>
-      <button (click)="btnRedirect($event, 'produto')">Voltar</button>
+
+    <div class="form-actions">
+      <button [disabled]="!produtoForm.valid" class="btn btn-primary" type="submit">{{ btnAcao }}</button>
+      <button class="btn btn-secondary" (click)="btnRedirect($event, 'produto')">Voltar</button>
     </div>
+
     </form>
 </div>

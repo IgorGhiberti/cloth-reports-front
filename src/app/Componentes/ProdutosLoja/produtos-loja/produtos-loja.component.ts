@@ -6,11 +6,14 @@ import { Loja } from '../../../Models/loja';
 import { LojaService } from '../../../Services/loja.service';
 import { MatButtonModule } from '@angular/material/button';
 import {MatStepperModule} from '@angular/material/stepper';
+import { ProdutosVendidos } from '../../../Models/ProdutosVendidos';
+import { GrupoVendaService } from '../../../Services/grupo-venda.service';
+import {NgxPrintModule} from 'ngx-print';
 
 @Component({
   selector: 'app-produtos-loja',
   standalone: true,
-  imports: [MatButtonModule, MatStepperModule],
+  imports: [MatButtonModule, MatStepperModule, NgxPrintModule],
   templateUrl: './produtos-loja.component.html',
   styleUrl: './produtos-loja.component.scss'
 })
@@ -20,11 +23,13 @@ export class ProdutosLojaComponent implements OnInit {
   produtoLojaEspecifico!: ProdutosLoja;
   loja!: Loja;
   idLoja!: number;
+  produtosVendidos: ProdutosVendidos [] = [];
 
   constructor(private router: Router,
     private produtosLojaService: ProdutosLojaService,
     private route: ActivatedRoute,
-    private lojaService: LojaService
+    private lojaService: LojaService,
+    private grupo_vendaService: GrupoVendaService
   ){}
 
   ngOnInit(): void {
@@ -32,10 +37,17 @@ export class ProdutosLojaComponent implements OnInit {
     this.idLoja = id;
     this.getLojaById();
     this.getProdutosNaoVendidos();
+    this.getProdutosVendidos();
   }
 
   //Exibe os produtos vendidos da loja
-
+  getProdutosVendidos()
+  {
+    this.grupo_vendaService.getSellProducts(this.idLoja).subscribe({
+      next: res => this.produtosVendidos = res,
+      error: err => console.error(err)
+    })
+  }
 
   //Exibe os produtos não vendidos da loja
   getProdutosNaoVendidos()

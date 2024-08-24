@@ -1,3 +1,13 @@
 /* You can add global styles to this file, and also import other style files */
 html, body { height: 100%; }
-body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
+// body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
+// Definição da paleta de cores no styles.scss
+$primary-color: #0b4f97; // Azul corporativo
+$secondary-color: #6c757d; // Cinza suave
+$light-bg-color: #f8f9fa; // Cor de fundo clara
+$dark-text-color: #343a40; // Texto escuro
+body {
+  font-family: 'Roboto', sans-serif;
+  color: $dark-text-color;
+  background-color: $light-bg-color;
+}

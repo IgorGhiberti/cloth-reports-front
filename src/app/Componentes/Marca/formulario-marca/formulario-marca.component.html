@@ -2,15 +2,15 @@
   <div class="title">
     <h1>{{ btnTitulo }}</h1>
   </div>
-  <form [formGroup]="marcaForm" (ngSubmit)="submitFunction()" #formDit="ngForm">
+  <form [formGroup]="marcaForm" (ngSubmit)="submitFunction()" #formDit="ngForm" class="form-container">
     <input type="hidden" formControlName="idmarca">
-    <div>
+    <div class="form-group">
       <label>Nome: </label>
-      <input type="text" formControlName="nome">
+      <input class="form-control" type="text" formControlName="nome">
     </div>
-    <div>
-      <button [disabled]="!marcaForm.valid" type="submit">{{ btnAcao }}</button>
-      <button (click)="btnRedirect($event, 'marca')">Voltar</button>
+    <div class="form-actions">
+      <button class="btn btn-primary" [disabled]="!marcaForm.valid" type="submit">{{ btnAcao }}</button>
+      <button class="btn btn-secondary" (click)="btnRedirect($event, 'marca')">Voltar</button>
     </div>
   </form>
 </div>

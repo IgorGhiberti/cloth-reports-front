@@ -8,9 +8,7 @@ import { LojaService } from '../../../../Services/loja.service';
 import { Router } from '@angular/router';
 import { GrupoVendaService } from '../../../../Services/grupo-venda.service';
 import { Produto } from '../../../../Models/produto';
-import { ProdutoService } from '../../../../Services/produto.service';
 import { VendasService } from '../../../../Services/vendas.service';
-import { Venda } from '../../../../Models/Vendas';
 import { CommonModule } from '@angular/common';
 
 @Component({

@@ -3,6 +3,7 @@ import { environment } from '../../environments/environment.development';
 import { HttpClient, HttpParams } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { Grupo_Venda } from '../Models/grupoVenda';
+import { ProdutosVendidos } from '../Models/ProdutosVendidos';
 
 @Injectable({
   providedIn: 'root'
@@ -51,5 +52,11 @@ export class GrupoVendaService {
     .set('data_fim', end.toISOString());
 
     return this.httpClient.get<Grupo_Venda[]>(`${this.url}/filtro-data`, { params })
+  }
+
+  //Retorna os produtos vendidos de cada loja
+  getSellProducts(idloja: number) : Observable<ProdutosVendidos[]>
+  {
+    return this.httpClient.get<ProdutosVendidos[]>(`${this.url}/produtos-vendidos/${idloja}`)
   }
 }

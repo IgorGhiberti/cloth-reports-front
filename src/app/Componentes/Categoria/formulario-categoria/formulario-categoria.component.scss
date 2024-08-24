@@ -1,0 +1,84 @@
+@import '../../../../styles.scss';
+
+.container {
+  max-width: 600px;
+  margin: 0 auto;
+  padding: 2rem;
+  background-color: #fff;
+  border-radius: 0.5rem;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+
+  .title {
+    margin-bottom: 2rem;
+
+    h1 {
+      color: $primary-color;
+      font-size: 2rem;
+      text-align: center;
+    }
+  }
+
+  .form-container {
+    .form-group {
+      margin-bottom: 1.5rem;
+
+      label {
+        display: block;
+        margin-bottom: 0.5rem;
+        color: $dark-text-color;
+        font-weight: bold;
+      }
+
+      .form-control {
+        width: 100%;
+        padding: 0.75rem;
+        border: 1px solid $secondary-color;
+        border-radius: 0.25rem;
+        font-size: 1rem;
+
+        &:focus {
+          border-color: $primary-color;
+          box-shadow: 0 0 5px rgba($primary-color, 0.5);
+        }
+      }
+    }
+
+    .form-actions {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+
+      .btn {
+        padding: 0.75rem 1.5rem;
+        border-radius: 0.25rem;
+        font-size: 1rem;
+        cursor: pointer;
+
+        &.btn-primary {
+          background-color: $primary-color;
+          color: white;
+          border: none;
+
+          &:hover {
+            background-color: darken($primary-color, 10%);
+          }
+
+          &:disabled {
+            background-color: lighten($primary-color, 30%);
+            cursor: not-allowed;
+          }
+        }
+
+        &.btn-secondary {
+          background-color: $secondary-color;
+          color: white;
+          border: none;
+
+          &:hover {
+            background-color: darken($secondary-color, 10%);
+          }
+        }
+      }
+    }
+  }
+}

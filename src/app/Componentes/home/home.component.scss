@@ -1,31 +1,86 @@
-.header{
+@import '../../../styles.scss';
+
+// Container principal
+.primeiro-container {
   display: flex;
   justify-content: center;
   align-items: center;
-  margin-top: 4rem;
-  gap: 50px;
-  a{
-    text-decoration: none;
-
-  }
-}
-
-.primeiro-container{
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  margin-top: 5rem;
-  .cadastrar{
+  margin-top: 3rem;
+  background-color: white;
+  padding: 2rem;
+  border-radius: 8px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  .cadastrar {
     margin-right: 2rem;
+    background-color: $primary-color;
+    color: white;
+    border: none;
+    padding: 0.5rem 1rem;
+    border-radius: 4px;
+    &:hover {
+      background-color: darken($primary-color, 10%);
+    }
   }
 }
 
-.tabela-venda{
+// Estilo do campo de data
+mat-form-field {
+  width: 300px;
+  .mat-form-field-wrapper {
+    background-color: white;
+    border-radius: 4px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  }
+}
+
+// Botões de filtro
+button {
+  background-color: $secondary-color;
+  color: white;
+  border: none;
+  padding: 0.5rem 1rem;
+  border-radius: 4px;
+  margin-left: 1rem;
+  &:hover {
+    background-color: darken($secondary-color, 10%);
+  }
+}
+
+// Tabela de vendas
+.tabela-venda {
   display: flex;
   justify-content: center;
   align-items: center;
   margin-top: 2rem;
-  .table{
-    margin: 3rem;
+  .table {
+    width: 80%;
+    background-color: white;
+    border-radius: 8px;
+    overflow: hidden;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    th {
+      background-color: $primary-color;
+      color: white;
+      font-weight: 500;
+      padding: 1rem;
+      text-align: center;
+    }
+    td {
+      padding: 1rem;
+      text-align: center;
+      &:first-child {
+        text-align: left;
+      }
+    }
+    .btn-action {
+      text-align: right;
+    }
+    .btn-danger {
+      background-color: #dc3545;
+      border: none;
+      &:hover {
+        background-color: darken(#dc3545, 10%);
+      }
+    }
   }
 }

@@ -8,65 +8,65 @@
   <form [formGroup]="grupo_VendaForm" (ngSubmit)="submitGrupoVenda()" #formDit="ngForm">
     <input type="hidden" formControlName="idgrupovenda">
 
-    <div>
+    <div class="form-group">
       <label>Data da venda: </label>
-      <input type="date" formControlName="data_venda">
+      <input class="form-control" type="date" formControlName="data_venda">
     </div>
 
     <div>
 
-      <div>
+      <div class="form-group">
         <label>Loja: </label>
-        <select formControlName="idprodutoloja" (change)="onLojaChange($event)">
+        <select formControlName="idprodutoloja" class="form-control" (change)="onLojaChange($event)">
           @for(loja of lojas; track loja.idloja){
             <option value="{{ loja.idloja }}">{{ loja.nome }}</option>
           }
         </select>
       </div>
 
-      <div>
+      <div class="form-group">
         <label>Produtos disponíveis: </label>
         @for(produto of produtosLoja; track produto.idproduto){
-        <select formControlName="idprodutoloja" (change)="onProdutoChange($event)">
+        <select formControlName="idprodutoloja" class="form-control" (change)="onProdutoChange($event)">
             <option value="{{ produto.idprodutoloja }}">{{ produto.nome }}</option>
         </select>
-        <div>
+        <div class="form-group">
           <label>Valor: </label>
-          <input type="text" [value]="selectedProduto?.valor_unitario" disabled placeholder="{{ produto.valor_unitario }}">
+          <input type="text" [value]="selectedProduto?.valor_unitario" class="form-control" disabled placeholder="{{ produto.valor_unitario }}">
         </div>
       }
       </div>
 
-      <div>
+      <div class="form-group">
         <label>Quantidade disponível: </label>
         @for (qtd of produtosLoja; track qtd.quantidade_produto) {
-        <input type="number" [value]="selectedProduto?.quantidade_produto" placeholder="{{ qtd.quantidade_produto }}" disabled>
+        <input type="number" class="form-control" [value]="selectedProduto?.quantidade_produto" placeholder="{{ qtd.quantidade_produto }}" disabled>
       }
       </div>
 
-      <div>
+      <div class="form-group">
         <label>Quantidade que será vendida: </label>
-          <input type="number" min="1" [attr.max]="selectedProduto?.quantidade_produto" formControlName="quantidade_vendido" (input)="onQuantidadeChange($event)">
+          <input class="form-control" type="number" min="1" [attr.max]="selectedProduto?.quantidade_produto" formControlName="quantidade_vendido" (input)="onQuantidadeChange($event)">
       </div>
 
-      <div>
+      <div class="form-group">
         <label>Valor final: </label>
-          <input disabled type="number" value="{{ valorFinal }}">
+          <input class="form-control" disabled type="number" value="{{ valorFinal }}">
       </div>
 
     </div>
 
-    <div>
-      <button [disabled]="!grupo_VendaForm.valid" (click)="addVenda()" type="button">Adicionar venda</button>
-      <button (click)="btnRedirect($event, '')">Voltar</button>
+    <div class="form-actions">
+      <button class="btn btn-primary" [disabled]="!grupo_VendaForm.valid" (click)="addVenda()" type="button">Adicionar venda</button>
+      <button class="btn btn-secondary" (click)="btnRedirect($event, '')">Voltar</button>
     </div>
 
   </form>
 }
 
 <div class="table-vendas-adicionadas mt-4">
-  <table>
-    <thead class="table">
+  <table class="table">
+    <thead>
       <tr>
         <th scope="col">Data da venda</th>
         <th scope="col">Loja</th>
@@ -86,17 +86,17 @@
           <td>{{ venda.quantidade_vendido }}</td>
           <td>{{ venda.quantidade_vendido * venda.valor_unitario }}</td>
           <td>
-            <button (click)="excluirVenda($index)" type="button">Excluir venda</button>
-            <button (click)="aumentarQtd($index)" type="button">++</button>
-            <button (click)="diminuirQtd($index)" type="button">--</button>
+            <button style="margin-right: 1rem;" (click)="excluirVenda($index)" class="btn btn-danger" type="button">Excluir venda</button>
+            <button style="margin-right: 1rem;" (click)="aumentarQtd($index)" class="btn btn-secondary" type="button">++</button>
+            <button (click)="diminuirQtd($index)" class="btn btn-secondary" type="button">--</button>
           </td>
         </tr>
       }
       }
     </tbody>
   </table>
-  <div>
-    <button type="submit" (click)="cadastrarVendaEGrupoVenda()">Cadastrar todas as vendas</button>
+  <div class="form-actions">
+    <button class="btn btn-success" type="submit" (click)="cadastrarVendaEGrupoVenda()">Cadastrar todas as vendas</button>
   </div>
 </div>
 </div>

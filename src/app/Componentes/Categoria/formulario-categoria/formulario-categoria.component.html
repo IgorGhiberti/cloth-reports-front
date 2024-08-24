@@ -2,15 +2,15 @@
   <div class="title">
     <h1>{{ btnTitulo }}</h1>
   </div>
-  <form [formGroup]="categoriaForm" (ngSubmit)="submitFunction()" #formDit="ngForm">
+  <form [formGroup]="categoriaForm" (ngSubmit)="submitFunction()" #formDit="ngForm" class="form-container">
     <input type="hidden" formControlName="idcategoria">
-    <div>
+    <div class="form-group">
       <label>Nome: </label>
-      <input type="text" formControlName="nome">
+      <input type="text" formControlName="nome" class="form-control">
     </div>
-    <div>
-      <button [disabled]="!categoriaForm.valid" type="submit">{{ btnAcao }}</button>
-      <button (click)="btnRedirect($event, 'categoria')">Voltar</button>
+    <div class="form-actions">
+      <button class="btn btn-primary" [disabled]="!categoriaForm.valid" type="submit">{{ btnAcao }}</button>
+      <button class="btn btn-secondary" (click)="btnRedirect($event, 'categoria')">Voltar</button>
     </div>
   </form>
 </div>
