@@ -10,6 +10,7 @@ import { ProdutosVendidos } from '../../../Models/ProdutosVendidos';
 import { GrupoVendaService } from '../../../Services/grupo-venda.service';
 import {NgxPrintModule} from 'ngx-print';
 
+
 @Component({
   selector: 'app-produtos-loja',
   standalone: true,
@@ -45,7 +46,9 @@ export class ProdutosLojaComponent implements OnInit {
   {
     this.grupo_vendaService.getSellProducts(this.idLoja).subscribe({
       next: res => this.produtosVendidos = res,
-      error: err => console.error(err)
+      error: err => {
+
+      }
     })
   }
 
@@ -57,8 +60,7 @@ export class ProdutosLojaComponent implements OnInit {
         this.produtosLoja = res
       },
       error: err => {
-        alert(err.message + 'Não existem produtos não vendidos para serem exibidos')
-        this.produtosLoja = []
+
       }
     })
   }
@@ -108,6 +110,8 @@ export class ProdutosLojaComponent implements OnInit {
   //Exclui o produto selecionado daquela loja
   excluirProdutoLoja(idprodutoloja: number)
   {
+    var desejaExcluir = confirm('Deseja realmente excluir o produto desta loja?')
+    if(desejaExcluir == true){
     this.produtosLojaService.deleteProdutosLoja(idprodutoloja).subscribe({
       next: res => {
         console.log(res),
@@ -118,6 +122,7 @@ export class ProdutosLojaComponent implements OnInit {
         this.getProdutosNaoVendidos()
       }
     })
+  }
   }
 
 }

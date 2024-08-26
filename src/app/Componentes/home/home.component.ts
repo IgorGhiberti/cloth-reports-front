@@ -40,7 +40,7 @@ export class HomeComponent implements OnInit {
       },
       error: err => {
         if(err.status == 400)
-          alert(err.message + 'Não existe vendas para serem exibidas'),
+          alert('Não existe vendas para serem exibidas'),
         this.grupo_venda = [];
       }
     })
@@ -78,8 +78,7 @@ export class HomeComponent implements OnInit {
 
   clearFilter()
   {
-    this.range.value.start = null
-    this.range.value.end = null
+    this.range.setValue({ start: null, end: null });
     this.getGrupoVenda();
   }
 

@@ -26,22 +26,22 @@
 
       <div class="form-group">
         <label>Produtos disponíveis: </label>
-        @for(produto of produtosLoja; track produto.idproduto){
+
         <select formControlName="idprodutoloja" class="form-control" (change)="onProdutoChange($event)">
+          @for(produto of produtosLoja; track produto.idproduto){
             <option value="{{ produto.idprodutoloja }}">{{ produto.nome }}</option>
+          }
         </select>
         <div class="form-group">
           <label>Valor: </label>
-          <input type="text" [value]="selectedProduto?.valor_unitario" class="form-control" disabled placeholder="{{ produto.valor_unitario }}">
+          <input type="text" [value]="selectedProduto?.valor_unitario" class="form-control" disabled placeholder="{{ selectedProduto?.valor_unitario }}">
         </div>
-      }
+
       </div>
 
       <div class="form-group">
         <label>Quantidade disponível: </label>
-        @for (qtd of produtosLoja; track qtd.quantidade_produto) {
-        <input type="number" class="form-control" [value]="selectedProduto?.quantidade_produto" placeholder="{{ qtd.quantidade_produto }}" disabled>
-      }
+        <input type="number" class="form-control" [value]="selectedProduto?.quantidade_produto" placeholder="{{ selectedProduto?.quantidade_produto }}" disabled>
       </div>
 
       <div class="form-group">

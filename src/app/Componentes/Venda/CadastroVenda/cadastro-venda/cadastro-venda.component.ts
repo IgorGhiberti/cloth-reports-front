@@ -159,25 +159,25 @@ export class CadastroVendaComponent implements OnInit {
   //Aumentar quantidade
   aumentarQtd(index: number)
   {
-    if(this.selectedProduto && this.selectedProduto?.quantidade_produto > this.gruposVenda[index].quantidade_vendido)
+    if(this.selectedProduto && this.selectedProduto.quantidade_produto > 0)
     {
       this.gruposVenda[index].quantidade_vendido ++
+      this.selectedProduto.quantidade_produto --
     }
-
   }
 
   //Diminuir quantidade
   diminuirQtd(index: number)
   {
-    if(this.selectedProduto && this.selectedProduto.quantidade_produto >= this.gruposVenda[index].quantidade_vendido)
+    console.log('chamou')
+    if(this.selectedProduto)
     {
       if(this.gruposVenda[index].quantidade_vendido > 1)
         {
           this.gruposVenda[index].quantidade_vendido --
+          this.selectedProduto.quantidade_produto ++
         }
     }
-
-
   }
 
   //Submit do formulário grupo venda
