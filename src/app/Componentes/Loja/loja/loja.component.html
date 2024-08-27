@@ -20,7 +20,7 @@
       <tbody>
         @for (loja of lojas; track loja.idloja) {
           <tr>
-            <td (click)="btnRedirect($event, 'produtosLoja/loja/' + loja.idloja)">{{ loja.nome }}</td>
+            <td class="nome-loja" (click)="btnRedirect($event, 'produtosLoja/loja/' + loja.idloja)">{{ loja.nome }}</td>
             <td>{{ loja.cnpj }}</td>
             <td class="text-end btn-action">
               <button type="button" class="btn btn-primary btn-sm" style="margin-right: 1rem;" (click)="btnRedirect($event, 'loja/editar/' + loja.idloja)">Editar</button>

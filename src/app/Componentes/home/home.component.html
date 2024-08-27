@@ -44,9 +44,9 @@
           <td>{{ venda.data_venda | date : 'd/M/yy' }}</td>
           <td>{{ venda.loja }}</td>
           <td>{{ venda.produto }}</td>
-          <td>{{ venda.valor_unitario }}</td>
+          <td>{{ venda.valor_unitario_venda | currency: 'BRL' }}</td>
           <td>{{ venda.quantidade_vendido }}</td>
-          <td>{{ venda.quantidade_vendido * venda.valor_unitario }}</td>
+          <td>{{ venda.quantidade_vendido * venda.valor_unitario_venda | currency: 'BRL' }}</td>
           <td class="text-end btn-action">
             <button type="button" (click)="excluirVenda(venda.idgrupovenda)" class="btn btn-danger btn-sm">Excluir</button>
           </td>

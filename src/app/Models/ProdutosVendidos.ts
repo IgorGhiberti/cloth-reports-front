@@ -3,7 +3,7 @@ export interface ProdutosVendidos{
   nome: string,
   marca: string,
   tamanho: string,
-  valor_unitario: number,
+  valor_unitario_venda: number,
   categoria: string,
   quantidade_vendido: number
 }

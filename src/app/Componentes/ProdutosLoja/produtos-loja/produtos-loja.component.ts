@@ -9,12 +9,13 @@ import {MatStepperModule} from '@angular/material/stepper';
 import { ProdutosVendidos } from '../../../Models/ProdutosVendidos';
 import { GrupoVendaService } from '../../../Services/grupo-venda.service';
 import {NgxPrintModule} from 'ngx-print';
+import { CommonModule } from '@angular/common';
 
 
 @Component({
   selector: 'app-produtos-loja',
   standalone: true,
-  imports: [MatButtonModule, MatStepperModule, NgxPrintModule],
+  imports: [MatButtonModule, MatStepperModule, NgxPrintModule, CommonModule],
   templateUrl: './produtos-loja.component.html',
   styleUrl: './produtos-loja.component.scss'
 })
@@ -45,9 +46,11 @@ export class ProdutosLojaComponent implements OnInit {
   getProdutosVendidos()
   {
     this.grupo_vendaService.getSellProducts(this.idLoja).subscribe({
-      next: res => this.produtosVendidos = res,
+      next: res => {this.produtosVendidos = res,
+        console.log(this.produtosVendidos)
+      },
       error: err => {
-
+        console.error(err)
       }
     })
   }

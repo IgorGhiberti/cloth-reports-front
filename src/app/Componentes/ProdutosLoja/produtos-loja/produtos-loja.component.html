@@ -8,8 +8,8 @@
     <div class="actions-container">
       <button class="btn btn-primary" (click)="btnRedirect($event, 'produtosLoja/cadastro/' + loja.idloja)">Cadastrar produto na loja {{loja.nome}}</button>
       <div class="print-buttons">
-        <button type="button" class="btn btn-secondary" printSectionId="print-section" ngxPrint>Imprimir vendidos</button>
-        <button type="button" class="btn btn-secondary" printSectionId="print-section-not-sell" ngxPrint>Imprimir não vendidos</button>
+        <button type="button" class="btn btn-secondary" [useExistingCss]="true" printSectionId="print-section" ngxPrint>Imprimir vendidos</button>
+        <button type="button" class="btn btn-secondary" [useExistingCss]="true" printSectionId="print-section-not-sell" ngxPrint>Imprimir não vendidos</button>
       </div>
     </div>
   }
@@ -37,12 +37,12 @@
               @if (produtosVendidos) {
               <tr>
                 <td>{{ produtoVendido.nome }}</td>
-                <td>{{ produtoVendido.valor_unitario }}</td>
+                <td>{{ produtoVendido.valor_unitario_venda| currency: 'BRL' }}</td>
                 <td>{{ produtoVendido.marca }}</td>
                 <td>{{ produtoVendido.categoria }}</td>
                 <td>{{ produtoVendido.tamanho }}</td>
                 <td>{{ produtoVendido.quantidade_vendido }}</td>
-                <td>{{ produtoVendido.quantidade_vendido * produtoVendido.valor_unitario }}</td>
+                <td>{{ produtoVendido.quantidade_vendido * produtoVendido.valor_unitario_venda| currency: 'BRL' }}</td>
               </tr>
             }
             @else if(!produtosVendidos) {
@@ -65,9 +65,7 @@
               <th scope="col">Categoria</th>
               <th scope="col">Tamanho</th>
               <th scope="col">Quantidade</th>
-              <th scope="col"></th>
-              <th scope="col"></th>
-              <th scope="col"></th>
+              <th scope="col" class="print-none"></th>
             </tr>
           </thead>
           <tbody>
@@ -75,12 +73,12 @@
               @if (produtoLoja) {
               <tr>
                 <td>{{ produtoLoja.nome }}</td>
-                <td>{{ produtoLoja.valor_unitario }}</td>
+                <td>{{ produtoLoja.valor_unitario | currency: 'BRL' }}</td>
                 <td>{{ produtoLoja.marca }}</td>
                 <td>{{ produtoLoja.categoria }}</td>
                 <td>{{ produtoLoja.tamanho }}</td>
                 <td>{{ produtoLoja.quantidade_produto }}</td>
-                  <td class="text-end btn-action">
+                  <td class="text-end btn-action no-print">
                       <button type="button" class="btn btn-primary btn-sm" style="margin-right: 1rem;" (click)="quantidadeMais(produtoLoja.idprodutoloja)">++</button>
                       <button type="button" class="btn btn-danger btn-sm" (click)="quantidadeMenos(produtoLoja.idprodutoloja)">--</button>
                       <button style="margin-left: 1rem;" type="button" (click)="excluirProdutoLoja(produtoLoja.idprodutoloja)">

@@ -34,7 +34,7 @@
         </select>
         <div class="form-group">
           <label>Valor: </label>
-          <input type="text" [value]="selectedProduto?.valor_unitario" class="form-control" disabled placeholder="{{ selectedProduto?.valor_unitario }}">
+          <input type="text" [value]="selectedProduto?.valor_unitario"  formControlName="valor_unitario_venda" class="form-control" placeholder="{{ selectedProduto?.valor_unitario }}">
         </div>
 
       </div>
@@ -84,7 +84,7 @@
           <td>{{ venda.loja }}</td>
           <td>{{ venda.produto }}</td>
           <td>{{ venda.quantidade_vendido }}</td>
-          <td>{{ venda.quantidade_vendido * venda.valor_unitario }}</td>
+          <td>{{ venda.quantidade_vendido * venda.valor_unitario_venda | currency: 'BRL' }}</td>
           <td>
             <button style="margin-right: 1rem;" (click)="excluirVenda($index)" class="btn btn-danger" type="button">Excluir venda</button>
             <button style="margin-right: 1rem;" (click)="aumentarQtd($index)" class="btn btn-secondary" type="button">++</button>

@@ -45,7 +45,8 @@ export class CadastroVendaComponent implements OnInit {
       idgrupovenda: new FormControl(0),
       idprodutoloja: new FormControl(0, Validators.required),
       data_venda: new FormControl(0),
-      quantidade_vendido: new FormControl(1, [Validators.required, Validators.min(1)])
+      quantidade_vendido: new FormControl(1, [Validators.required, Validators.min(1)]),
+      valor_unitario_venda: new FormControl(this.selectedProduto?.valor_unitario)
     })
   }
 
@@ -133,7 +134,7 @@ export class CadastroVendaComponent implements OnInit {
           ...formValue,
           produto: this.selectedProduto?.nome || '', // Adiciona o nome do produto
           loja: this.lojas.find(loja => loja.idloja === this.idLoja)?.nome || '',
-          valor_unitario: this.selectedProduto?.valor_unitario || 0
+          valor_unitario_venda: this.selectedProduto?.valor_unitario || 0,
         };
         this.gruposVenda.push(this.vendaDetalhada);  // Adiciona a venda detalhada ao array
         console.log('Venda adicionada: ', this.vendaDetalhada);

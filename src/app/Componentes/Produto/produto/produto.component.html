@@ -24,7 +24,7 @@
         @for (produto of produtos; track produto.idproduto) {
           <tr>
             <td>{{ produto.nomeproduto }}</td>
-            <td>{{ produto.valorunitario }}</td>
+            <td>{{ produto.valorunitario | currency: 'BRL' }}</td>
             <td>{{ produto.nomemarca }}</td>
             <td>{{ produto.nomecategoria }}</td>
             <td>{{ produto.nometamanho }}</td>
