@@ -4,6 +4,7 @@ import { HttpClient, HttpParams } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { Grupo_Venda } from '../Models/grupoVenda';
 import { ProdutosVendidos } from '../Models/ProdutosVendidos';
+import { ReportsVenda } from '../Models/reports-lojaVenda';
 
 @Injectable({
   providedIn: 'root'
@@ -58,5 +59,11 @@ export class GrupoVendaService {
   getSellProducts(idloja: number) : Observable<ProdutosVendidos[]>
   {
     return this.httpClient.get<ProdutosVendidos[]>(`${this.url}/produtos-vendidos/${idloja}`)
+  }
+
+  //Retorna o relatório de vendas
+  getReports(): Observable<ReportsVenda[]>
+  {
+    return this.httpClient.get<ReportsVenda[]>(`${this.url}/vendaPorLoja`)
   }
 }

@@ -23,6 +23,7 @@ import { EditarProdutoComponent } from './Componentes/Produto/editar-produto/edi
 import { ExcluirProdutoComponent } from './Componentes/Produto/excluir-produto/excluir-produto.component';
 import { ProdutosLojaComponent } from './Componentes/ProdutosLoja/produtos-loja/produtos-loja.component';
 import { CadastroProdutoLojaComponent } from './Componentes/ProdutosLoja/cadastro-produto-loja/cadastro-produto-loja.component';
+import { ReportsComponent } from './Componentes/Reports/reports/reports.component';
 
 export const routes: Routes = [
   {path: '', component: HomeComponent},
@@ -48,5 +49,6 @@ export const routes: Routes = [
   {path: 'produto/editar/:id', component: EditarProdutoComponent},
   {path: 'produto/excluir/:id', component: ExcluirProdutoComponent},
   {path: 'produtosLoja/loja/:idloja', component: ProdutosLojaComponent},
-  {path: 'produtosLoja/cadastro/:idloja', component: CadastroProdutoLojaComponent}
+  {path: 'produtosLoja/cadastro/:idloja', component: CadastroProdutoLojaComponent},
+  {path: 'reports', component: ReportsComponent}
 ];
