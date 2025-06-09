@@ -1,28 +1,42 @@
-# ClothReportsFront
+# 🧥 Cloth Reports Front – Aplicação Angular para Relatórios de Roupas
 
-This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 18.0.3.
+Este projeto é uma **aplicação frontend em Angular** desenvolvida para consumir a API do sistema **Cloth Reports**, que gerencia produtos, lojas e vendas de roupas. O foco da aplicação é exibir e cadastrar produtos, visualizar vendas e gerar relatórios interativos com base nos dados disponíveis.
 
-## Development server
+---
 
-Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The application will automatically reload if you change any of the source files.
+## 🧰 Tecnologias Utilizadas
 
-## Code scaffolding
+- Angular 17+
+- TypeScript
+- RxJS
+- SCSS
 
-Run `ng generate component component-name` to generate a new component. You can also use `ng generate directive|pipe|service|class|guard|interface|enum|module`.
+---
 
-## Build
+## ✅ Funcionalidades
 
-Run `ng build` to build the project. The build artifacts will be stored in the `dist/` directory.
+- Cadastro de produtos com marca, tipo, tamanho e valor
+- Associação de produtos com lojas
+- Registro de vendas com múltiplos produtos
+- Visualização de produtos disponíveis e vendidos por loja
+- Geração de relatórios com contagem de produtos vendidos
+- Navegação por componentes reutilizáveis
+- Interface responsiva com Angular Material
 
-## Running unit tests
+---
 
-Run `ng test` to execute the unit tests via [Karma](https://karma-runner.github.io).
+## ▶️ Como Executar
 
-## Running end-to-end tests
+### Pré-requisitos
 
-Run `ng e2e` to execute the end-to-end tests via a platform of your choice. To use this command, you need to first add a package that implements end-to-end testing capabilities.
+- Node.js (versão recomendada: 18+)
+- Angular CLI instalado globalmente
 
-## Further help
+### Passos
 
-To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI Overview and Command Reference](https://angular.dev/tools/cli) page.
-# cloth-reports-front
+```bash
+git clone https://github.com/IgorGhiberti/cloth-reports-front.git
+cd cloth-reports-front
+npm install
+ng serve
+
